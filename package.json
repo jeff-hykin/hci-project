@@ -10,6 +10,7 @@
     "core-js": "^2.6.5",
     "css-baseline": "^1.1.4",
     "good-vue": "^1.1.2",
+    "keen-ui": "^1.2.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
