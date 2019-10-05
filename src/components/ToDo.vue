@@ -5,7 +5,6 @@
             label="Your todo's "
             placeholder="(mm/dd/yyyy hh:mm I need to start typing)"
             :multi-line="true"
-            :maxlength="256"
             v-model="text"
             style="font-size: 14pt !important; width: 25rem;"
             class="todo-textbox"

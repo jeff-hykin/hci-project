@@ -1,8 +1,8 @@
 <template>
-    <row align-h=space-between align-v=top>
+    <row align-h=space-between align-v=top :wrap=true>
         <!-- spacing -->
-        <column margin=2rem>
-        </column>
+        <!-- <column margin=2rem>
+        </column> -->
         
         <!-- timer area -->
         <column margin=2rem>
@@ -82,7 +82,25 @@ export default {
         },
         daysUntil() {
             return Math.floor((this.timeUntil/86400))
-        } 
+        },
+        countdown() {
+            let time = this.secondsUntil
+            if (this.minutesUntil) {
+                time = `${this.minutesUntil}:${time}`
+            }
+            if (this.hoursUntil) {
+                time = `${this.hoursUntil}:${time}`
+            }
+            if (this.daysUntil) {
+                time = `${this.daysUntil}:${time}`
+            }
+            return time
+        }
+    },
+    watch: {
+        timeUntil() {
+            document.title = this.countdown
+        }
     },
     methods: {
         timeUntilNextCaledarEvent() {
