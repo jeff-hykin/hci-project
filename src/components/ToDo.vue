@@ -36,13 +36,16 @@ export default {
             if (text) {
                 let lines = text.split(/\n(?=\S)/)
                 for (let each of lines) {
-                    let match = each.match(/(\d+\/\d+\/\d+) (\d{1,2}):(\d{1,2})([aA][mM]|[pP][mM]) ([\s\S]*)/)
+                    let match = each.match(/(?:(\d+\/\d+\/\d+) )?(\d{1,2}):(\d{1,2})([aA][mM]|[pP][mM]) ([\s\S]*)/)
                     if (match) {
                         let hour = match[2]-0
                         let minute = match[3]-0
                         let pmOrAm = match[4]
                         let time = convertTime12to24(hour, minute, pmOrAm)
-                        let dateTime = new Date((new Date(match[1])).getTime() + Math.abs(timezoneReference.getTimezoneOffset()*60000))
+                        let dateTime = new Date()
+                        if (match[1] != null) {
+                            dateTime = new Date((new Date(match[1])).getTime() + Math.abs(timezoneReference.getTimezoneOffset()*60000))
+                        }
                         dateTime.setHours(time[0], time[1])
                         // if it is a future event
                         if (dateTime.getTime() > (new Date()).getTime()) {

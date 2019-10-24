@@ -137,10 +137,14 @@ export default {
                         this.calendarEvents.shift()
                     }
                     // schedule the next event
-                    this.nextCalendarEventTime = this.calendarEvents[0].unixTime
-                    this.calendarEventName = this.calendarEvents[0].title
-                    // immediately update the time again (kinda recursion)
-                    this.updateTime()
+                    if (this.calendarEvents[0]) {
+                        this.nextCalendarEventTime = this.calendarEvents[0].unixTime
+                        this.calendarEventName = this.calendarEvents[0].title
+                        // immediately update the time again (kinda recursion)
+                        this.updateTime()
+                    } else {
+                        this.timeUntil = 0
+                    }
                 }                
             }
         }
