@@ -13,7 +13,7 @@ Vue.use(GoodVue)
 // 
 // imported components
 // 
-import ToDo from './components/ToDo'
+import ToDo from './components/to-do'
 let components = {
     'to-do': ToDo,
 }
