@@ -25,6 +25,7 @@ let components = {
 // 
 let globalDataDefaultValues = {
     events: [
+        // store events in sorted order by start time
         {
             name: "Event1",
             description: "Do some stuff",
@@ -38,9 +39,10 @@ let globalDataDefaultValues = {
         },
     ],
     weather: [
-        
+        // not sure how this data will be formatted, could be hourly
     ],
 }
+// connect the data to every child component
 Vue.mixin({
     data: ()=>({
         $global: globalDataDefaultValues

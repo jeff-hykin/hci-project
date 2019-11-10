@@ -9,6 +9,6 @@ module.exports = {
             .clear()
             .add("./src/App.vue")
             .end()
-        config.resolve.alias.set("@", path.join(__dirname, "./client"))
+        config.resolve.alias.set("@", path.join(__dirname, "./src"))
     },
 }
