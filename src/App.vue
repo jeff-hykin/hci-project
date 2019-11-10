@@ -122,7 +122,8 @@ let App = {
         setInterval(this.updateTime,1000)
     },
 }
-// Since this is root, Load the app immediately after this file loads
+// Since this is root, Load the app immediately after this file loads: setTimeout(0)
+// find the '#app' div and replace it with this app
 setTimeout(()=>(new (Vue.extend(App))).$mount('#app'),0)
 export default App
 </script>
