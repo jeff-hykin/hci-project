@@ -10,6 +10,8 @@ import 'css-baseline/css/3.css'
 import GoodVue from 'good-vue'
 Vue.use(GoodVue)
 
+import DateTime from 'good-date'
+
 // 
 // imported components
 // 
@@ -22,7 +24,17 @@ let components = {
 // globally accessible data
 // 
 let globalDataDefaultValues = {
-    events: [],
+    events: [
+        {
+            name: "Event1",
+            description: "Do some stuff",
+            subTasks: [],
+            dateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
+        }
+    ],
+    weather: [
+        
+    ],
 }
 Vue.mixin({
     data: ()=>({
