@@ -1,48 +1,16 @@
-<template>
-    <row align-h=space-between align-v=top :wrap=true>
-        <!-- spacing -->
-        <!-- <column margin=2rem>
-        </column> -->
-        
-        <!-- timer area -->
-        <column margin=2rem>
-            <row class='card no-word-wrap' color=gray>
-                <h3 style='width: max-content'>{{calendarEventName}}</h3>
-            </row>
-            <row>
-                <h1 v-if="daysUntil">{{daysUntil}}:</h1>
-                <h1 v-if="hoursUntil">{{hoursUntil}}:</h1>
-                <h1 v-if="minutesUntil">{{minutesUntil}}:</h1>
-                <h1>{{secondsUntil}}</h1>
-            </row>
-        </column>
-        <!-- Events -->
-        <column class=event-container>
-            <!-- <column class=card>
-                <md-datepicker v-model="selectedDate" md-immediately />
-                <row class=card-row>
-                    <h5>Title</h5>
-                    <input type="text" v-model="calendarEvent.title">
-                </row>
-                <row class=card-row>
-                    <h5>Date</h5>
-                    <input type="date" v-model="calendarEvent.date">
-                </row>
-                <row class=card-row>
-                    <h5>Time</h5>
-                    <input type="time" v-model="calendarEvent.time">
-                </row>
-                <button @click="submitCalendarEvent">
-                    Submit
-                </button>
-            </column> -->
-            <row height=2rem />
-            <to-do @taskChange='updateCalendarEvents' />
-        </column>
-    </row>
-</template>
-
 <script>
+import Vue from 'vue'
+
+import KeenUI from 'keen-ui'
+import 'keen-ui/dist/keen-ui.css'
+Vue.use(KeenUI)
+
+import 'css-baseline/css/4.css'
+import GoodVue from 'good-vue'
+Vue.use(GoodVue)
+
+Vue.config.productionTip = false
+
 import ToDo from './components/ToDo'
 
 let currentUnixTime = ()=>new Date().getTime()/1000
@@ -53,7 +21,7 @@ let padZero = (amount)=> {
         return amount
     }
 }
-export default {
+let App = {
     name: 'Main',
     components: {
         ToDo,
@@ -152,10 +120,55 @@ export default {
     mounted() {
         // start update loop
         setInterval(this.updateTime,1000)
-        console.log(`here2`)
     },
 }
+// Since this is root, Load the app immediately after this file loads
+setTimeout(()=>(new (Vue.extend(App))).$mount('#app'),0)
+export default App
 </script>
+<template>
+    <row align-h=space-between align-v=top :wrap=true>
+        <!-- spacing -->
+        <!-- <column margin=2rem>
+        </column> -->
+        
+        <!-- timer area -->
+        <column margin=2rem>
+            <row class='card no-word-wrap' color=gray>
+                <h3 style='width: max-content'>{{calendarEventName}}</h3>
+            </row>
+            <row>
+                <h1 v-if="daysUntil">{{daysUntil}}:</h1>
+                <h1 v-if="hoursUntil">{{hoursUntil}}:</h1>
+                <h1 v-if="minutesUntil">{{minutesUntil}}:</h1>
+                <h1>{{secondsUntil}}</h1>
+            </row>
+        </column>
+        <!-- Events -->
+        <column class=event-container>
+            <!-- <column class=card>
+                <md-datepicker v-model="selectedDate" md-immediately />
+                <row class=card-row>
+                    <h5>Title</h5>
+                    <input type="text" v-model="calendarEvent.title">
+                </row>
+                <row class=card-row>
+                    <h5>Date</h5>
+                    <input type="date" v-model="calendarEvent.date">
+                </row>
+                <row class=card-row>
+                    <h5>Time</h5>
+                    <input type="time" v-model="calendarEvent.time">
+                </row>
+                <button @click="submitCalendarEvent">
+                    Submit
+                </button>
+            </column> -->
+            <row height=2rem />
+            <to-do @taskChange='updateCalendarEvents' />
+        </column>
+    </row>
+</template>
 <style scoped>
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
