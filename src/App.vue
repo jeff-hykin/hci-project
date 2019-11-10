@@ -6,7 +6,7 @@
         
         <!-- timer area -->
         <column margin=2rem>
-            <row class=card color=gray>
+            <row class='card no-word-wrap' color=gray>
                 <h3 style='width: max-content'>{{calendarEventName}}</h3>
             </row>
             <row>
@@ -172,5 +172,8 @@ export default {
 }
 .event-container {
     padding: 2rem;
+}
+.no-word-wrap {
+    white-space: pre;
 }
 </style>
