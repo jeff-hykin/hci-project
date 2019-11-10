@@ -26,8 +26,6 @@ const convertTime12to24 = (hours, minutes, pmOrAm) => {
 
 export default {
     data: ()=>({
-        text: "",
-        tasks: [],
     }),
     methods: {
     },
