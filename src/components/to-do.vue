@@ -27,9 +27,12 @@ const convertTime12to24 = (hours, minutes, pmOrAm) => {
 export default {
     data: ()=>({
     }),
-    methods: {
-    },
     watch: {
+    },
+    methods: {
+        dummyMethodThatAcessesGlobalData() {
+            let firstEvent = this.$global.events[0]
+        }
     },
     mounted() {
     }

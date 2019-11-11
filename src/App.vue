@@ -74,6 +74,9 @@ let App = {
     watch: {
     },
     methods: {
+        dummyMethodThatAcessesGlobalData() {
+            let firstEvent = this.$global.events[0]
+        }
     },
     mounted() {
     },
