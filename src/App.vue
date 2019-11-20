@@ -2,13 +2,13 @@
 import Vue from 'vue'
 Vue.config.productionTip = false
 
+import 'css-baseline/css/4.css'
+import GoodVue from 'good-vue'
+Vue.use(GoodVue)
+
 import KeenUI from 'keen-ui'
 import 'keen-ui/dist/keen-ui.css'
 Vue.use(KeenUI)
-
-import 'css-baseline/css/3.css'
-import GoodVue from 'good-vue'
-Vue.use(GoodVue)
 
 import DateTime from 'good-date'
 
