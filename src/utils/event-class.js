@@ -32,9 +32,24 @@ export default function setupEventClass(getGlobalDataAccessor) {
         }
     }
     let Event = function(input) {
-        Object.defineProperty(input, "color", {
-            get() {
-                return Event.getColorFor(this.source)
+        // add methods to the object without turning it into a real class
+        // this allows Vue to track changes on the object
+        Object.defineProperties(input, {
+            color: {
+
+                get() {
+                    return Event.getColorFor(this.source)
+                }
+            },
+            numOfFifteenMinuteChunks: {
+                get() {
+                    let start = this.startDateTime.unix/1000;
+                    let end = this.endDateTime.unix/1000;
+                    let durationInSeconds = Math.abs(end-start);
+                    let numberOfSecsIn15Minutes = 15 * 60;
+                    // always round up, no 0-duration events 
+                    return Math.trunc((durationInSeconds-0.01) / numberOfSecsIn15Minutes) + 1
+                }
             }
         })
         return input

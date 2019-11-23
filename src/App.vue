@@ -16,8 +16,10 @@ import DateTime from 'good-date'
 // imported components
 // 
 import ToDo from './components/to-do'
+import MagicBar from './components/magic-bar'
 let components = {
     'to-do': ToDo,
+    'magic-bar': MagicBar,
 }
 
 // 
@@ -56,6 +58,7 @@ let App = {
         }
     },
     mounted() {
+        // for debugging
         window.data = this.global
     },
 }
@@ -65,8 +68,8 @@ setTimeout(()=>(new (Vue.extend(App))).$mount('#app'),0)
 export default App
 </script>
 <template>
-    <column id=app align-v=top :wrap=true>
-        <h2>Test Title</h2>
+    <column id=app align-v=top align-h=left>
+        <magic-bar />
     </column>
 </template>
 <style scoped>

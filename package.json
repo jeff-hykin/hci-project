@@ -9,7 +9,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "css-baseline": "^1.1.8",
-    "good-date": "^1.2.0",
+    "good-date": "^1.2.2",
     "good-vue": "^1.2.8",
     "keen-ui": "^1.2.0",
     "vue": "^2.6.10"
