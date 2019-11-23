@@ -23,31 +23,8 @@ let components = {
 // 
 // globally accessible data
 // 
-let globalDataDefaultValues = {
-    events: [
-        // store events in sorted order by start time
-        {
-            name: "Event1",
-            description: "Do some stuff",
-            subTasks: [
-                "do something beforehand",
-            ],
-            startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
-            endDateTime: new DateTime([2020, 1, 1, 0, 0, 0]),
-            source: "School Calendar",
-            location: [ 30.618634 /*latitude*/ , -96.324496 /*longitude*/ ],
-        },
-    ],
-    weather: [
-        // not sure how this data will be formatted, could be hourly
-    ],
-}
-// connect the data to every child component
-Vue.mixin({
-    data: ()=>({
-        $global: globalDataDefaultValues
-    })
-})
+import setupGlobalData from './global-data-setup'
+setupGlobalData(Vue)
 
 // 
 // helper functions
@@ -75,10 +52,11 @@ let App = {
     },
     methods: {
         dummyMethodThatAcessesGlobalData() {
-            let firstEvent = this.$global.events[0]
+            let firstEvent = this.global.events[0]
         }
     },
     mounted() {
+        window.data = this.global
     },
 }
 // Since this is root, Load the app immediately after this file loads: setTimeout(0)
@@ -87,7 +65,7 @@ setTimeout(()=>(new (Vue.extend(App))).$mount('#app'),0)
 export default App
 </script>
 <template>
-    <column align-v=top :wrap=true>
+    <column id=app align-v=top :wrap=true>
         <h2>Test Title</h2>
     </column>
 </template>
