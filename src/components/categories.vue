@@ -11,19 +11,19 @@
             </row>
         </container>
         <!-- Card Preview -->
-        <container v-if=selectedCategory class=card>
-            <container class=card-head :style='{backgroundColor:getColorFor(selectedCategory), color:"white"}' shadow=1>
-                <h5>{{this.selectedCategory}}</h5>
-            </container>
-            
-        </container>
+        <categoryEvents :category='selectedCategory' :color='getColorFor(selectedCategory)' />
     </container>
 </template>
 
 <script>
 import Event from '../utils/event-class'
+import categoryEvents from './categoryEvents'
 
 export default {
+    name: "categories",
+    components: {
+        categoryEvents
+    },
     data:()=>({
        selectedCategory: null 
     }),
@@ -37,7 +37,6 @@ export default {
             return Event.getColorFor(category)
         },
         selectCategory(category) {
-            console.log(`category is:`,category)
             this.selectedCategory = category
         }
     },

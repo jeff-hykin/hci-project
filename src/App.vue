@@ -143,28 +143,40 @@ export default App
 
 <!-- Global CSS -->
 <style lang='scss'>
+:root {
+    --shadow-1: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
+    --shadow-2: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
+}
+
 .card {
-    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
+    --padding: 0.8rem 1rem;
+    
+    box-shadow: var(--shadow-2);
     background: whitesmoke;
     border-radius: 1rem;
-}
-.card-head {
-    width: 100%;
-    height: fit-content;
-    padding: 0.8rem 1rem;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
     
-    h1, h2, h3, h4, h5 {
+    .card-head {
         width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+        height: fit-content;
+        padding: var(--padding);
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-shadow: var(--shadow-1);
+        
+        h1, h2, h3, h4, h5 {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+    
+    .card-body {
+        padding: var(--padding);
     }
 }
 .no-word-wrap {
