@@ -1,5 +1,5 @@
 <template>
-    <column class=card align-h=left align-v=top style="width: 100%; height: 100%;">
+    <container class=card>
         <h3 v-if=!currentEvent>No Active Event</h3>
         <column v-if=currentEvent style="width: 100%; height: 100%;" align-v=top align-h=left>
             <!-- Title -->
@@ -7,9 +7,9 @@
             <!-- Description -->
             <p class='description'>{{ currentEvent.description }}</p>
             <!-- SubTasks -->
-            <column class=subtasks align-h=left align-v=top>
+            <container class=subtasks width=100%>
                 <ui-checkbox v-for="task in currentEvent.tasks" :key="task.title" v-model="task.done">{{task.title}}</ui-checkbox>
-            </column>
+            </container>
             <div class=spacer></div>
             <div class=spacer></div>
             <!-- Buttons -->
@@ -19,7 +19,7 @@
                 <v-btn text @click="$emit('next-event')">Next</v-btn>
             </row>
         </column>
-    </column>
+    </container>
 </template>
 
 <script>
@@ -33,6 +33,11 @@ export default {
 }
 </script>
 <style scoped>
+.card {
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+}
 .title {
     height: 1em;
     max-width: 100%;
@@ -46,7 +51,7 @@ export default {
 .subtasks {
     height: 40%;
     overflow: scroll;
-    margin-left: 2rem; 
+    padding-left: 2rem; 
 }
 .spacer {
     height: 1rem;

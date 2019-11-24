@@ -85,20 +85,20 @@ setTimeout(() => new (Vue.extend(App))().$mount("#app"), 0)
 export default App
 </script>
 <template>
-    <column  id="app" align-v="top" align-h="left">
+    <container id="app" >
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
         <row class='map-and-preview-container' align-h=space-evenly>
-            <column height=100% width=65%>
+            <container height=100% width=65%>
                 <eventMap />
-            </column>
-            <column height=100% width=30%>
+            </container>
+            <container height=100% width=30%>
                 <eventDetails :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
-            </column>
+            </container>
         </row>
         <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" />
-    </column>
+    </container>
 </template>
 <style scoped>
 >>> {

@@ -10,13 +10,13 @@
     "core-js": "^3.3.2",
     "css-baseline": "^1.1.8",
     "good-date": "^1.2.2",
-    "good-vue": "^1.2.8",
+    "good-vue": "^1.3.0",
+    "google-maps-api-loader": "^1.1.1",
     "keen-ui": "^1.2.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
-    "vuetify": "^2.1.11",
-    "google-maps-api-loader": "^1.1.1"
+    "vuetify": "^2.1.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
