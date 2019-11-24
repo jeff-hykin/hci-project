@@ -20,10 +20,9 @@ import setupGlobalData from "./global-data-setup"
 //
 import ToDo from "./components/to-do"
 import MagicBar from "./components/magic-bar"
-let components = {
-    "to-do": ToDo,
-    "magic-bar": MagicBar,
-}
+import CategoryBreakdown from "./components/categoryBreakdown"
+import CurrentEvent from "./components/currentEvent"
+import EventMap from "./components/eventMap"
 
 //
 // App
@@ -31,13 +30,32 @@ let components = {
 let App = {
     name: "Main",
     vuetify,
-    components,
+    components: {
+        ToDo,
+        MagicBar,
+        CategoryBreakdown,
+        CurrentEvent,
+        EventMap,
+    },
     data: () => ({}),
     computed: {},
     watch: {},
     methods: {
-        dummyMethodThatAcessesGlobalData() {
-            let firstEvent = this.global.events[0]
+        selEvent(index) {
+            this.selected = index
+            console.log(index)
+        },
+        nextEvent() {
+            console.log("next")
+            if (this.selected < this.events.length - 1) {
+                this.selected += 1
+            }
+        },
+        prevEvent() {
+            console.log("prev")
+            if (this.selected > 0) {
+                this.selected -= 1
+            }
         },
     },
     mounted() {
@@ -55,9 +73,15 @@ setTimeout(() => new (Vue.extend(App))().$mount("#app"), 0)
 export default App
 </script>
 <template>
-    <column id="app" align-v="top" align-h="left">
+    <v-app>
         <magic-bar />
-    </column>
+        <!-- <magicBar style="top:  1%; left:  1%; height:  3%; width: 98%; position: absolute;" :events="events" :weather="weather" /> -->
+        <eventMap style="top:  5%; left:  1%; height: 59%; width: 69%; position: absolute;" :position="position" />
+        <currentEvent style="top:  5%; left: 71%; height: 59%; width: 28%; position: absolute;" :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
+        <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" />
+    </v-app>
+    <!-- <column id="app" align-v="top" align-h="left">
+    </column> -->
 </template>
 <style scoped>
 .card {
