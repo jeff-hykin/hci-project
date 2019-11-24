@@ -16,17 +16,18 @@ let localStorageData = {
 for (let eachKey in localStorageData) {
     let savedData = localStorage.getItem(eachKey)
     if (savedData != null) {
-        localStorageData[eachKey] = JSON.parse()
+        localStorageData[eachKey] = JSON.parse(savedData)
     }
 }
 
 // 
 // setup watchers for all localStorage items
 // 
-let watchers = {}
+let watch = {}
 for (let eachKey in localStorageData) {
-    watchers[`${globalKey}.${eachKey}`] = function(newValue, oldValue) {
-        localStorage.setItem(JSON.stringify(newValue))
+    let fullKey = `${globalKey}.${eachKey}`
+    watch[fullKey] = function(newValue, oldValue) {
+        localStorage.setItem(eachKey, JSON.stringify(newValue))
     }
 }
 
@@ -57,5 +58,5 @@ Vue.mixin({
         globalDataAccessor = this
         return { [globalKey]: globalData}
     },
-    watchers,
+    watch,
 })

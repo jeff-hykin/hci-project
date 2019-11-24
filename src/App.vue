@@ -28,7 +28,7 @@ import EventMap from "./components/eventMap"
 // App
 //
 let App = {
-    name: "Main",
+    name: "App",
     vuetify,
     components: {
         ToDo,
@@ -38,7 +38,15 @@ let App = {
         EventMap,
     },
     data: () => ({}),
-    computed: {},
+    computed: {
+        nextEvents: function() {
+            var temp = []
+            for (var event in this.events) {
+                if (this.events[event].sHour > this.currentHour || (this.events[event].sHour == this.currentHour && this.events[event].sMinute >= thiscurrentMinute)) temp.push(this.events[event])
+            }
+            return temp
+        },
+    },
     watch: {},
     methods: {
         selEvent(index) {
