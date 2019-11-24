@@ -1,74 +1,61 @@
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 Vue.config.productionTip = false
 
-import 'css-baseline/css/4.css'
-import GoodVue from 'good-vue'
-Vue.use(GoodVue)
+//
+// plugins
+//
+import "./plugins/css-baseline"
+import "./plugins/good-vue"
+import "./plugins/keen-ui"
+import vuetify from "./plugins/vuetify"
 
-import KeenUI from 'keen-ui'
-import 'keen-ui/dist/keen-ui.css'
-Vue.use(KeenUI)
-
-import DateTime from 'good-date'
-
-// 
-// imported components
-// 
-import ToDo from './components/to-do'
-import MagicBar from './components/magic-bar'
-let components = {
-    'to-do': ToDo,
-    'magic-bar': MagicBar,
-}
-
-// 
+//
 // globally accessible data
-// 
-import setupGlobalData from './global-data-setup'
-setupGlobalData(Vue)
+//
+import setupGlobalData from "./global-data-setup"
 
-// 
-// helper functions
-// 
-let currentUnixTime = ()=>new Date().getTime()/1000
-let padZero = (amount)=> {
-    if (amount < 10) {
-        return `0${amount}`
-    } else {
-        return amount
-    }
+//
+// imported components
+//
+import ToDo from "./components/to-do"
+import MagicBar from "./components/magic-bar"
+let components = {
+    "to-do": ToDo,
+    "magic-bar": MagicBar,
 }
 
-// 
+//
 // App
-// 
+//
 let App = {
-    name: 'Main',
+    name: "Main",
+    vuetify,
     components,
-    data: ()=> ({
-    }),
-    computed: {
-    },
-    watch: {
-    },
+    data: () => ({}),
+    computed: {},
+    watch: {},
     methods: {
         dummyMethodThatAcessesGlobalData() {
             let firstEvent = this.global.events[0]
-        }
+        },
     },
     mounted() {
         // for debugging
         window.data = this.global
     },
 }
+
+// 
+// attach app to dom
+// 
 // Since this is root, Load the app immediately after this file loads: setTimeout(0)
 // find the '#app' div and replace it with this app
-setTimeout(()=>(new (Vue.extend(App))).$mount('#app'),0)
+setTimeout(() => new (Vue.extend(App))().$mount("#app"), 0)
 export default App
 </script>
 <template>
-    <column id=app align-v=top align-h=left>
+    <column id="app" align-v="top" align-h="left">
         <magic-bar />
     </column>
 </template>
