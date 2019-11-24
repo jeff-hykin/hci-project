@@ -2,7 +2,12 @@
   <v-app>
     <magicBar          style="top:  1%; left:  1%; height:  3%; width: 98%; position: absolute;" :events="events" :weather="weather"/>
     <eventMap          style="top:  5%; left:  1%; height: 59%; width: 69%; position: absolute;" :position="position"/>
-    <currentEvent      style="top:  5%; left: 71%; height: 59%; width: 28%; position: absolute;" :events="nextEvents" :selected="selected"/>
+    <currentEvent      style="top:  5%; left: 71%; height: 59%; width: 28%; position: absolute;" 
+      :events="events" 
+      :selected="selected"
+      v-on:next-event="nextEvent()"
+      v-on:prev-event="prevEvent()"
+    />
     <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent"/>
   </v-app>
 </template>
@@ -25,8 +30,20 @@ export default {
   methods: {
     selEvent(index) {
       this.selected = index
-      console.log('set')
-    }
+      console.log(index)
+    },
+    nextEvent() {
+      console.log('next')
+      if (this.selected < this.events.length - 1) {
+        this.selected += 1
+      }
+    },
+    prevEvent() {
+      console.log('prev')
+      if (this.selected > 0) {
+        this.selected -= 1
+      }
+    },
   },
   data: () => ({
     events: [
@@ -79,36 +96,6 @@ export default {
         ]
       },
       {
-        title: "CSCE 121 Class",
-        sHour: 15,
-        sMinute: 0,
-        eHour: 15,
-        eMinute: 50,
-        tag: "CSCE 121",
-        description: "Regular class",
-        position: {"lat":35.6432027,"lng":139.6729435},
-        index: 3,
-        tasks: [
-          {title: 'bring computer', done: false},
-        ]
-      },
-      {
-        title: "CSCE 121 HW4",
-        sHour: 23,
-        sMinute: 59,
-        tag: "CSCE 121",
-        description: "HW4 deadline, turn in on one of the eight turn in places",
-        position: {"lat":35.6432027,"lng":139.6729435},
-        index: 4,
-        tasks: [
-          {title: 'Complete task 3', done: false},
-          {title: 'Turn in on Piazza', done: true},
-          {title: 'Turn in on ECampus', done: true},
-          {title: 'Turn in on Gradescope', done: true},
-          {title: 'Turn in on Google class', done: true},
-        ]
-      },
-      {
         title: "ENG 111 Project Check",
         sHour: 10,
         sMinute: 0,
@@ -116,7 +103,7 @@ export default {
         tag: "ENG 111",
         description: "Need to demo labview code turned in",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 5,
+        index: 3,
         tasks: [
           {title: 'Delete project code', done: false},
         ]
@@ -129,7 +116,7 @@ export default {
         tag: "ENG 111",
         description: "Discussing what to do after turn in",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 6,
+        index: 4,
         tasks: [
           {title: 'Bring snacks', done: false},
         ]
@@ -142,23 +129,9 @@ export default {
         tag: "Random",
         description: "Online at link in email",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 7,
+        index: 5,
         tasks: [
           {title: 'Sign up for position', done: false},
-        ]
-      },
-      {
-        title: "CSCE 121 Test",
-        sHour: 14,
-        sMinute: 30,
-        day: 2,
-        tag: "CSCE 121",
-        description: "Covers data structures",
-        position: {"lat":35.6432027,"lng":139.6729435},
-        index: 8,
-        tasks: [
-          {title: 'Study', done: false},
-          {title: 'Q drop', done: true},
         ]
       },
       {
@@ -169,7 +142,7 @@ export default {
         tag: "CSCE 482",
         description: "HW 3 due",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 9,
+        index: 6,
         tasks: [
           {title: 'Turn in', done: false},
         ]
@@ -182,7 +155,7 @@ export default {
         tag: "CSCE 482",
         description: "HW 4 due",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 10,
+        index: 7,
         tasks: [
           {title: 'Turn in', done: false},
         ]
@@ -195,7 +168,7 @@ export default {
         tag: "Random",
         description: "Didn't eat enough apples",
         position: {"lat":35.6432027,"lng":139.6729435},
-        index: 11,
+        index: 8,
         tasks: [
           {title: 'Pick up shot records', done: false},
           {title: 'Get checked for extra-toe-itus', done: false},
