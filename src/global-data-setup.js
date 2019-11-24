@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import mockData from './mock-data'
-import setupEventClass from "./utils/event-class"
+import Event from "./utils/event-class"
 
-
-let globalDataAccessor
 let globalKey = 'global'
 
 // 
@@ -32,11 +30,9 @@ for (let eachKey in localStorageData) {
 }
 
 // 
-// setup the events
+// setup the calendar events
 // 
-let Event = setupEventClass(()=>globalDataAccessor)
 let events = mockData.events.map(each=>Event(each))
-
 
 // 
 // define globalData
@@ -51,11 +47,18 @@ let globalData = {
 }
 
 // 
+// define computed global properties
+// 
+
+
+// 
 // atttach data and watchers to vue
 // 
 Vue.mixin({
-    data() {
-        globalDataAccessor = this
+    data() {        
+        // make global data accessible on the window object
+        window.globalData = globalData; setTimeout(()=>window.globalData=this.$data[globalKey], 0)
+
         return { [globalKey]: globalData}
     },
     watch,
