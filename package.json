@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "google-maps-api-loader": "^1.1.1",
     "vue": "^2.6.10",
     "vuetify": "^2.1.0"
   },
