@@ -150,7 +150,7 @@ for (let eachIndex in events) {
         subTasks: [`do something beforehand ${eachIndex}`],
         startDateTime: new DateTime([2019, 11, 24, eachIndex, 30]),
         endDateTime: new DateTime([2020, 1, 1, eachIndex * 2, 0]),
-        source: "School Calendar",
+        source: events[eachIndex].tag || "School Calendar",
         // nickos data
         title: `CSCE 482 Exam ${eachIndex}`,
         sHour: eachIndex,

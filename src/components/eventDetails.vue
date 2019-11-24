@@ -35,11 +35,6 @@
 <script>
 export default {
     name: "currentEvent",
-    props: {
-        events: Array,
-        selected: Number,
-    },
-    data: () => ({}),
     computed: {
         hideNextEventButton() {
             return !this.global.events[this.global.currentEventIndex+1]
@@ -62,7 +57,6 @@ export default {
 .card {
     width: 100%;
     height: 100%;
-    min-height: 20rem;
     padding: 2rem;
     background: white;
 }

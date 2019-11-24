@@ -21,6 +21,7 @@ export default {
     width: 200vw;
     position: relative;
     background: whitesmoke;
+    min-height: 2rem;
 }
 .bar-event-container {
     margin-left: 5px;

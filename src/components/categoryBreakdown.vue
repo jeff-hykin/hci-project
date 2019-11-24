@@ -14,7 +14,7 @@
 import categoryEvents from "./categoryEvents"
 import notes from "./notes"
 export default {
-    name: "CategoryBreakdown",
+    name: "categoryBreakdown",
     components: {
         categoryEvents,
         notes,
@@ -38,8 +38,8 @@ export default {
     },
     mounted: function() {
         var cats = {}
-        for (var e in this.events) {
-            var event = this.events[e]
+        for (var e in this.global.events) {
+            var event = this.global.events[e]
             if (event.tag in cats) {
                 cats[event.tag].push(event)
             } else {

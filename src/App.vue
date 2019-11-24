@@ -23,6 +23,7 @@ import MagicBar from "./components/magic-bar"
 import categoryBreakdown from "./components/categoryBreakdown"
 import eventDetails from "./components/eventDetails"
 import eventMap from "./components/eventMap"
+import categories from './components/categories'
 
 // 
 // utils
@@ -41,6 +42,7 @@ let App = {
         categoryBreakdown,
         eventDetails,
         eventMap,
+        categories,
     },
     data: () => ({}),
     computed: {
@@ -90,18 +92,22 @@ export default App
             <magic-bar />
         </div>
         <row class='map-and-preview-container' align-h=space-evenly>
-            <container class=map-container height=100% width=65%>
+            <container class=map-container height=100% width=65% min-height=20rem>
                 <eventMap />
             </container>
-            <container class=event-detail-container height=100% width=30%>
+            <container class=event-detail-container height=100% width=30% min-height=20rem>
                 <eventDetails />
             </container>
         </row>
-        <!-- <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" /> -->
+        <container class=category-container>
+            <categories />
+        </container>
+        <!-- <categoryBreakdown :events="events" v-on:sel-event="selEvent" /> -->
     </container>
 </template>
-<style lang=scss scoped>
->>> {
+<style lang='scss' scoped>
+// pass down to children
+::v-deep {
     /* 12 hour view */
     --one-hour-width: calc(100vw / 12);
     --fifteen-min-width: calc(var(--one-hour-width) / 4)
@@ -114,18 +120,25 @@ export default App
     width: 100vw;
     max-width: 100vw;
     overflow: visible;
+    
+    .magic-bar-container {
+        height: 10%;
+        width: 100%;
+    }
+
+    .map-and-preview-container {
+        padding: 2rem;
+        min-height: min-content;
+        height: 50%;
+        width: 100%;
+    }
+    
+    .category-container {
+        height: 20%;
+        width: 100%;
+    }
 }
 
-.magic-bar-container {
-    height: 10%;
-    width: 100%;
-}
-
-.map-and-preview-container {
-    padding: 2rem;
-    height: 50%;
-    width: 100%;
-}
 </style>
 
 <!-- Global CSS -->
