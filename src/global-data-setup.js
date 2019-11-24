@@ -64,14 +64,8 @@ let computed = {
 let methods = {
     getNextFutureEvent() {
         // compute the next event ignoring the date and only looking at 24 hour times
-        let now = new DateTime()
-        let nowDayTimeString = `${now.hour24}${now.minute}`
-        let nowDayTimeNumber = nowDayTimeString-0
-        let indexOfNextEvent = this.$data.global.events.findIndex(eachEvent=>{
-            let eachDayTimeString = `${eachEvent.startDateTime.hour24}${eachEvent.startDateTime.minute}`
-            let eachDayTimeNumber = eachDayTimeString-0
-            return eachDayTimeNumber > nowDayTimeNumber
-        })
+        let now = new DateTime().timeOfDayAsSeconds
+        let indexOfNextEvent = this.$data.global.events.findIndex(eachEvent=>eachEvent.startDateTime && (eachEvent.startDateTime.timeOfDayAsSeconds > now))
         if (indexOfNextEvent == -1) {
             return null
         } else {

@@ -134,7 +134,7 @@ export default App
     }
     
     .category-container {
-        height: 20%;
+        height: 30%;
         width: 100%;
     }
 }
@@ -142,14 +142,30 @@ export default App
 </style>
 
 <!-- Global CSS -->
-<style>
+<style lang='scss'>
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
     background: whitesmoke;
     border-radius: 1rem;
 }
-.card h5 {
-    margin-right: 1rem;
+.card-head {
+    width: 100%;
+    height: fit-content;
+    padding: 0.8rem 1rem;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
+    
+    h1, h2, h3, h4, h5 {
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 .no-word-wrap {
     white-space: pre;

@@ -43,6 +43,11 @@ let Event = function(input) {
                 // always round up, no 0-duration events 
                 return Math.trunc((durationInSeconds-0.01) / numberOfSecsIn15Minutes) + 1
             }
+        },
+        startsInFuture: {
+            get() {
+                return (new DateTime().timeOfDayAsSeconds) < this.startDateTime.timeOfDayAsSeconds
+            }
         }
     })
     return input
