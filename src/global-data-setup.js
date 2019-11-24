@@ -42,6 +42,7 @@ let events = mockData.events.map(each=>Event(each))
 // 
 let globalData = {
     ...localStorageData,
+    selected: null,
     events,
     weather: [
         // not sure how this data will be formatted, could be hourly
