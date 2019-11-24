@@ -14,9 +14,9 @@
             <div class=spacer></div>
             <!-- Buttons -->
             <row width=100% align-h=space-between>
-                <v-btn text @click="$emit('prev-event')">Previous</v-btn>
-                <v-btn text >View on Calendar</v-btn>
-                <v-btn text @click="$emit('next-event')">Next</v-btn>
+                <v-btn :class='{hidden:hidePreviousEventButton}' text @click="nextEvent">Previous</v-btn>
+                <v-btn :class='{hidden:!currentEvent.url}' text >View on Calendar</v-btn>
+                <v-btn :class='{hidden:hideNextEventButton}' text @click="prevEvent">Next</v-btn>
             </row>
         </column>
     </container>
@@ -30,6 +30,22 @@ export default {
         selected: Number,
     },
     data: () => ({}),
+    computed: {
+        hideNextEventButton() {
+            return !this.global.events[this.global.currentEventIndex+1]
+        },
+        hidePreviousEventButton() {
+            return !this.global.events[this.global.currentEventIndex-1]
+        }
+    },
+    methods: {
+        nextEvent() {
+            this.global.currentEventIndex += 1
+        },
+        prevEvent() {
+            this.global.currentEventIndex -= 1
+        }
+    }
 }
 </script>
 <style scoped>
@@ -37,6 +53,8 @@ export default {
     width: 100%;
     height: 100%;
     min-height: 20rem;
+    padding: 2rem;
+    background: white;
 }
 .title {
     height: 1em;

@@ -90,17 +90,17 @@ export default App
             <magic-bar />
         </div>
         <row class='map-and-preview-container' align-h=space-evenly>
-            <container height=100% width=65%>
+            <container class=map-container height=100% width=65%>
                 <eventMap />
             </container>
-            <container height=100% width=30%>
-                <eventDetails :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
+            <container class=event-detail-container height=100% width=30%>
+                <eventDetails />
             </container>
         </row>
-        <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" />
+        <!-- <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" /> -->
     </container>
 </template>
-<style scoped>
+<style lang=scss scoped>
 >>> {
     /* 12 hour view */
     --one-hour-width: calc(100vw / 12);
@@ -132,7 +132,7 @@ export default App
 <style>
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
-    padding: 2rem;
+    background: whitesmoke;
     border-radius: 1rem;
 }
 .card h5 {
@@ -145,5 +145,8 @@ export default App
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.hidden {
+    visibility: hidden;
 }
 </style>
