@@ -24,6 +24,7 @@ import categoryBreakdown from "./components/categoryBreakdown"
 import eventDetails from "./components/eventDetails"
 import eventMap from "./components/eventMap"
 import categories from './components/categories'
+import notes from './components/notes'
 
 // 
 // utils
@@ -43,6 +44,7 @@ let App = {
         eventDetails,
         eventMap,
         categories,
+        notes,
     },
     data: () => ({}),
     computed: {
@@ -56,22 +58,6 @@ let App = {
     },
     watch: {},
     methods: {
-        selEvent(index) {
-            this.selected = index
-            console.log(index)
-        },
-        nextEvent() {
-            console.log("next")
-            if (this.selected < this.events.length - 1) {
-                this.selected += 1
-            }
-        },
-        prevEvent() {
-            console.log("prev")
-            if (this.selected > 0) {
-                this.selected -= 1
-            }
-        },
     },
     mounted() {
         this.global.currentEventIndex = this.getNextFutureEvent()
@@ -102,7 +88,7 @@ export default App
         <container class=category-container>
             <categories />
         </container>
-        <!-- <categoryBreakdown :events="events" v-on:sel-event="selEvent" /> -->
+        <notes />
     </container>
 </template>
 <style lang='scss' scoped>
@@ -189,5 +175,11 @@ export default App
 }
 .hidden {
     visibility: hidden;
+}
+
+// disable the garbage vuetify
+button.ui-button {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 </style>

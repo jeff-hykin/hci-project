@@ -4,25 +4,11 @@
             <h5>{{category}}</h5>
         </container>
         <container class=card-body>
-            <container>
-                <row v-for='each in events' :key=each.title>
-                    {{each.title}}
-                </row>  
-            </container>
+            <ui-button class=category-event v-for='each in events' :key=each.title align-h=left @click='selectEvent(each)'>
+                {{each.title}}
+            </ui-button>
         </container>
     </container>
-    <!-- <v-card style="width: 100%; height: 100%;">
-        <v-toolbar color="indigo" dark>
-            <v-toolbar-title>{{ tag }}</v-toolbar-title>
-        </v-toolbar>
-        <v-list>
-            <v-list-item v-for="event in events" :key="event.title" @click="$emit('sel-event', event.index)">
-                <v-list-item-content>
-                    <v-list-item-title v-text="event.title"></v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-        </v-list>
-    </v-card> -->
 </template>
 
 <script>
@@ -37,6 +23,11 @@ export default {
         events() {
             return this.global.events.filter(each => each.startsInFuture && each.source == this.category)
         }
+    },
+    methods: {
+        selectEvent(event) {
+            this.global.currentEventIndex = event.index-0
+        }
     }
 }
 </script>
@@ -48,6 +39,20 @@ export default {
     
     .card-head {
         transition: all 300ms ease-out;
+    }
+    
+    .card-body {
+        width: 100%;
+        .category-event {
+            cursor: pointer;
+            text-align: left;
+            justify-content: flex-start;
+            background-color: #bdbdbd;
+            padding: 0 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            margin-bottom: 0.3rem;
+        }
     }
 }
 </style>

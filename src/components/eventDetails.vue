@@ -53,33 +53,34 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .card {
     width: 100%;
     height: 100%;
     padding: 2rem;
     background: white;
-}
-.button {
-    background: gray;
-    color: white;
-}
-.title {
-    height: 1em;
-    max-width: 100%;
-    margin-bottom: 1rem;
-}
-.description {
-    height: 4em;
-    margin-bottom: 1rem;
-    overflow: auto;
-}
-.subtasks {
-    height: 40%;
-    overflow: scroll;
-    padding-left: 2rem; 
-}
-.spacer {
-    height: 1rem;
+    
+    .title {
+        height: 1em;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    .description {
+        height: 4em;
+        margin-bottom: 1rem;
+        overflow: auto;
+    }
+    .subtasks {
+        height: 40%;
+        overflow: scroll;
+        padding-left: 2rem; 
+    }
+    .spacer {
+        height: 1rem;
+    }
+    .button {
+        background: gray;
+        color: white;
+    }
 }
 </style>

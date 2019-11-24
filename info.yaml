@@ -3,10 +3,12 @@
     name: A Project
     description: A new project
     
+    done:
+        - map
+        - calculate the categories/sources color legened from the events
+    
     todo:
         - notes
-        - calculate the categories/sources color legened from the events
-        - map
         
         - magic-bar:
             - have the magic bar be 48 hours long
