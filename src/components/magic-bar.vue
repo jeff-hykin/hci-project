@@ -1,6 +1,6 @@
 <template>
     <row class='magic-bar' align-h=left>
-        <column class=bar-event-container v-for='event of this.global.events'>
+        <column class=bar-event-container v-for='event of this.global.events' :key=event.index>
             <bar-event :event=event  />
         </column>
     </row>

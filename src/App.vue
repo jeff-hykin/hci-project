@@ -21,7 +21,7 @@ import setupGlobalData from "./global-data-setup"
 import ToDo from "./components/to-do"
 import MagicBar from "./components/magic-bar"
 import categoryBreakdown from "./components/categoryBreakdown"
-import currentEvent from "./components/currentEvent"
+import eventDetails from "./components/eventDetails"
 import eventMap from "./components/eventMap"
 
 // 
@@ -39,7 +39,7 @@ let App = {
         ToDo,
         MagicBar,
         categoryBreakdown,
-        currentEvent,
+        eventDetails,
         eventMap,
     },
     data: () => ({}),
@@ -89,10 +89,14 @@ export default App
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
-        <div class='map-and-preview-container'>
-            <eventMap />
-        </div>
-        <currentEvent style="top:  5%; left: 71%; height: 59%; width: 28%; position: absolute;" :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
+        <row class='map-and-preview-container' align-h=space-evenly>
+            <column height=100% width=65%>
+                <eventMap />
+            </column>
+            <column height=100% width=30%>
+                <eventDetails :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
+            </column>
+        </row>
         <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" />
     </column>
 </template>
@@ -122,10 +126,10 @@ export default App
     height: 50%;
     width: 100%;
 }
+</style>
 
-/* 
-    old
-*/
+<!-- Global CSS -->
+<style>
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
     padding: 2rem;
@@ -134,15 +138,12 @@ export default App
 .card h5 {
     margin-right: 1rem;
 }
-.row.card-row {
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-}
-.event-container {
-    padding: 2rem;
-}
 .no-word-wrap {
     white-space: pre;
+}
+.ellipsis-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 </style>
