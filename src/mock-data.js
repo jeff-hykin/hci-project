@@ -31,7 +31,7 @@ let events = [
         eMinute: 30,
         tag: "CSCE 482",
         description: "This is the third test that will happen and will cover chapters 11, 12, 13, 14",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 0,
         tasks: [
             { title: "Study", done: false },
@@ -48,7 +48,7 @@ let events = [
         eMinute: 40,
         tag: "ENG 111",
         description: "Make sure to bring the legos",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 1,
         tasks: [
             { title: "Pre class quiz", done: false },
@@ -65,7 +65,7 @@ let events = [
         eMinute: 0,
         tag: "Random",
         description: "Meeting at PIADA",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 2,
         tasks: [{ title: "Get the student discount", done: false }],
     },
@@ -76,7 +76,7 @@ let events = [
         day: 1,
         tag: "ENG 111",
         description: "Need to demo labview code turned in",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 3,
         tasks: [{ title: "Delete project code", done: false }],
     },
@@ -87,7 +87,7 @@ let events = [
         day: 1,
         tag: "ENG 111",
         description: "Discussing what to do after turn in",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 4,
         tasks: [{ title: "Bring snacks", done: false }],
     },
@@ -98,7 +98,7 @@ let events = [
         day: 1,
         tag: "Random",
         description: "Online at link in email",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 5,
         tasks: [{ title: "Sign up for position", done: false }],
     },
@@ -109,7 +109,7 @@ let events = [
         day: 3,
         tag: "CSCE 482",
         description: "HW 3 due",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 6,
         tasks: [{ title: "Turn in", done: false }],
     },
@@ -120,7 +120,7 @@ let events = [
         day: 4,
         tag: "CSCE 482",
         description: "HW 4 due",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 7,
         tasks: [{ title: "Turn in", done: false }],
     },
@@ -131,7 +131,7 @@ let events = [
         day: 4,
         tag: "Random",
         description: "Didn't eat enough apples",
-        position: { lattitude: 35.6432027, longitude: 139.6729435 },
+        position: { lat: 35.6432027, lng: 139.6729435 },
         index: 8,
         tasks: [
             { title: "Pick up shot records", done: false },
@@ -140,6 +140,10 @@ let events = [
     },
 ]
 
+
+// 
+// auto generate missing data
+// 
 for (let eachIndex in events) {
     let genericEvent = {
         // jeffs data
@@ -149,7 +153,7 @@ for (let eachIndex in events) {
         startDateTime: new DateTime([2019, 11, 24, eachIndex, 30]),
         endDateTime: new DateTime([2020, 1, 1, eachIndex * 2, 0]),
         source: "School Calendar",
-        location: { lattitude: 35.6432027 + eachIndex * 2, longitude: -96.324496 },
+        location: [30.618634 + eachIndex /*latitude*/, -96.324496 /*longitude*/],
         // nickos data
         title: `CSCE 482 Exam ${eachIndex}`,
         sHour: eachIndex,
@@ -157,6 +161,7 @@ for (let eachIndex in events) {
         eHour: eachIndex + 1,
         eMinute: 30,
         tag: `CSCE 482 ${eachIndex}`,
+        position: { lat: 35.6432027 + eachIndex * 2, lng: -96.324496 },
         index: 0,
         tasks: [
             { title: "Study", done: false },
@@ -168,7 +173,7 @@ for (let eachIndex in events) {
     // 
     // ensure that every event has something for Jeff's and nickos data
     // 
-    events[eachIndex] = {  ...genericEvent, ...events[eachIndex] }
+    events[eachIndex] = {  ...genericEvent, ...events[eachIndex], index: eachIndex }
 }
 
 export default {

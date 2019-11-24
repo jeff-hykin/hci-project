@@ -24,6 +24,11 @@ import CategoryBreakdown from "./components/categoryBreakdown"
 import CurrentEvent from "./components/currentEvent"
 import EventMap from "./components/eventMap"
 
+// 
+// utils
+// 
+import DateTime from 'good-date'
+
 //
 // App
 //
@@ -67,8 +72,7 @@ let App = {
         },
     },
     mounted() {
-        // for debugging
-        window.data = this.global
+        this.global.currentEventIndex = this.getNextFutureEvent()
     },
 }
 

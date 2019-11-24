@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import mockData from './mock-data'
 import Event from "./utils/event-class"
+import DateTime from 'good-date'
 
 let globalKey = 'global'
 
@@ -35,11 +36,11 @@ for (let eachKey in localStorageData) {
 let events = mockData.events.map(each=>Event(each))
 
 // 
-// define globalData
+// Data
 // 
 let globalData = {
     ...localStorageData,
-    selected: null,
+    currentEventIndex: null,
     events,
     weather: [
         // not sure how this data will be formatted, could be hourly
@@ -47,19 +48,49 @@ let globalData = {
 }
 
 // 
-// define computed global properties
+// Computed
 // 
+let computed = {
+    currentEvent() {
+        if (this.$data.global.currentEventIndex != null) {
+            return this.$data.global.events[this.$data.global.currentEventIndex]
+        }
+    },
+}
 
+// 
+// Methods
+// 
+let methods = {
+    getNextFutureEvent() {
+        // compute the next event ignoring the date and only looking at 24 hour times
+        let now = new DateTime()
+        let nowDayTimeString = `${now.hour24}${now.minute}`
+        let nowDayTimeNumber = nowDayTimeString-0
+        let indexOfNextEvent = this.$data.global.events.findIndex(eachEvent=>{
+            let eachDayTimeString = `${eachEvent.startDateTime.hour24}${eachEvent.startDateTime.minute}`
+            let eachDayTimeNumber = eachDayTimeString-0
+            return eachDayTimeNumber > nowDayTimeNumber
+        })
+        if (indexOfNextEvent == -1) {
+            return null
+        } else {
+            return indexOfNextEvent
+        }
+    }
+}
 
 // 
 // atttach data and watchers to vue
 // 
 Vue.mixin({
-    data() {        
+    data() {
         // make global data accessible on the window object
         window.globalData = globalData; setTimeout(()=>window.globalData=this.$data[globalKey], 0)
 
         return { [globalKey]: globalData}
     },
+    computed,
     watch,
+    methods,
 })

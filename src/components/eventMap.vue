@@ -8,9 +8,6 @@
 import GoogleMapsApiLoader from "google-maps-api-loader"
 export default {
     name: "EventMap",
-    props: {
-        position: Object,
-    },
     data: () => ({
         apiKey: "AIzaSyD86cLvPkOdZXVKMrQUvFkkrydo-HW5XH8",
         google: null,
@@ -18,8 +15,8 @@ export default {
         marker: null,
     }),
     computed: {
-        mapConfig: function() {
-            return { zoom: 17, center: this.position }
+        mapConfig() {
+            return { zoom: 17, center: this.currentEvent.position }
         },
     },
     methods: {
@@ -29,7 +26,7 @@ export default {
             this.map = new Map(mapContainer, this.mapConfig)
             const { Marker } = this.google.maps
             this.marker = new Marker({
-                position: this.position,
+                position: this.currentEvent.position,
                 map: this.map,
                 title: "Child marker!",
             })
