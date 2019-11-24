@@ -144,12 +144,19 @@ let events = [
 // 
 for (let eachIndex in events) {
     let genericEvent = {
-        // jeffs data
-        name: `Event${eachIndex}`,
+        // finialized data
         description: `do some stuff ${eachIndex}`,
-        subTasks: [`do something beforehand ${eachIndex}`],
         startDateTime: new DateTime([2019, 11, 24, eachIndex, 30]),
         endDateTime: new DateTime([2020, 1, 1, eachIndex * 2, 0]),
+        position: { lat: 35.6432027 + eachIndex * 2, lng: -96.324496 },
+        tasks: [
+            { title: "Study", done: false },
+            { title: "Get scantron", done: true },
+            { title: "sharpen pencil", done: false },
+            { title: "cry", done: false },
+        ],
+        // jeffs data
+        subTasks: [`do something beforehand ${eachIndex}`],
         source: events[eachIndex].tag || "School Calendar",
         // nickos data
         title: `CSCE 482 Exam ${eachIndex}`,
@@ -158,14 +165,7 @@ for (let eachIndex in events) {
         eHour: eachIndex + 1,
         eMinute: 30,
         tag: `CSCE 482 ${eachIndex}`,
-        position: { lat: 35.6432027 + eachIndex * 2, lng: -96.324496 },
         index: 0,
-        tasks: [
-            { title: "Study", done: false },
-            { title: "Get scantron", done: true },
-            { title: "sharpen pencil", done: false },
-            { title: "cry", done: false },
-        ],
     }
     // 
     // ensure that every event has something for Jeff's and nickos data

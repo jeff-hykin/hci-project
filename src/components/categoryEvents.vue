@@ -4,9 +4,11 @@
             <h5>{{category}}</h5>
         </container>
         <container class=card-body>
-            <row >
-                testing 1 2 3
-            </row>  
+            <container>
+                <row v-for='each in events' :key=each.title>
+                    {{each.title}}
+                </row>  
+            </container>
         </container>
     </container>
     <!-- <v-card style="width: 100%; height: 100%;">
@@ -31,6 +33,11 @@ export default {
         color: String,
     },
     data: () => ({}),
+    computed: {
+        events() {
+            return this.global.events.filter(each => each.startsInFuture && each.source == this.category)
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
