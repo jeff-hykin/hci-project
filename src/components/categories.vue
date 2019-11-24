@@ -4,7 +4,7 @@
         <!-- Legend -->
         <container class=legend flex-wrap=wrap flex-direction=row>
             <row class=category-legend-element align-h=left v-for='category in categories' :key="category">
-                <row class=category-legend-element-wrapper align-h=left>
+                <row class=category-legend-element-wrapper align-h=left @click='selectCategory(category)'>
                     <container class=color-square :backgroundColor='getColorFor(category)' />
                     <p class='category-name ellipsis-overflow'>{{category}}</p>
                 </row>
@@ -15,6 +15,7 @@
             <container class=card-head :style='{backgroundColor:getColorFor(selectedCategory), color:"white"}' shadow=1>
                 <h5>{{this.selectedCategory}}</h5>
             </container>
+            
         </container>
     </container>
 </template>
@@ -34,6 +35,10 @@ export default {
     methods: {
         getColorFor(category) {
             return Event.getColorFor(category)
+        },
+        selectCategory(category) {
+            console.log(`category is:`,category)
+            this.selectedCategory = category
         }
     },
     beforeMount() {
@@ -80,6 +85,10 @@ export default {
         height: 100%;
         min-width: 20rem;
         min-height: 10rem;
+        
+        .card-head {
+            transition: all 300ms ease-out;
+        }
     }
 }
 </style>
