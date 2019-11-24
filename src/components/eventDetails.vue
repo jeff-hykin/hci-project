@@ -14,9 +14,19 @@
             <div class=spacer></div>
             <!-- Buttons -->
             <row width=100% align-h=space-between>
-                <v-btn :class='{hidden:hidePreviousEventButton}' text @click="nextEvent">Previous</v-btn>
-                <v-btn :class='{hidden:!currentEvent.url}' text >View on Calendar</v-btn>
-                <v-btn :class='{hidden:hideNextEventButton}' text @click="prevEvent">Next</v-btn>
+                <!-- Previous -->
+                <v-btn :class="['button', {hidden:hidePreviousEventButton}]" text @click="prevEvent">
+                    Previous
+                </v-btn>
+                <!-- Open in Calendar -->
+                <v-btn :class="['calendarButton', {hidden:!currentEvent.url}]" text >
+                    View on Calendar
+                </v-btn>
+                
+                <!-- Next -->
+                <v-btn :class="['button', {hidden:hideNextEventButton}]" text @click="nextEvent">
+                    Next
+                </v-btn>
             </row>
         </column>
     </container>
@@ -55,6 +65,10 @@ export default {
     min-height: 20rem;
     padding: 2rem;
     background: white;
+}
+.button {
+    background: gray;
+    color: white;
 }
 .title {
     height: 1em;

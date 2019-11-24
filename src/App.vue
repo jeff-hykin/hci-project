@@ -85,7 +85,7 @@ setTimeout(() => new (Vue.extend(App))().$mount("#app"), 0)
 export default App
 </script>
 <template>
-    <container id="app" >
+    <container id="app">
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
