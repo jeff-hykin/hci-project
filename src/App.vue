@@ -20,9 +20,9 @@ import setupGlobalData from "./global-data-setup"
 //
 import ToDo from "./components/to-do"
 import MagicBar from "./components/magic-bar"
-import CategoryBreakdown from "./components/categoryBreakdown"
-import CurrentEvent from "./components/currentEvent"
-import EventMap from "./components/eventMap"
+import categoryBreakdown from "./components/categoryBreakdown"
+import currentEvent from "./components/currentEvent"
+import eventMap from "./components/eventMap"
 
 // 
 // utils
@@ -38,9 +38,9 @@ let App = {
     components: {
         ToDo,
         MagicBar,
-        CategoryBreakdown,
-        CurrentEvent,
-        EventMap,
+        categoryBreakdown,
+        currentEvent,
+        eventMap,
     },
     data: () => ({}),
     computed: {
@@ -85,17 +85,47 @@ setTimeout(() => new (Vue.extend(App))().$mount("#app"), 0)
 export default App
 </script>
 <template>
-    <v-app>
-        <magic-bar />
-        <!-- <magicBar style="top:  1%; left:  1%; height:  3%; width: 98%; position: absolute;" :events="events" :weather="weather" /> -->
-        <eventMap style="top:  5%; left:  1%; height: 59%; width: 69%; position: absolute;" :position="position" />
+    <column  id="app" align-v="top" align-h="left">
+        <div class='magic-bar-container'>
+            <magic-bar />
+        </div>
+        <div class='map-and-preview-container'>
+            <eventMap />
+        </div>
         <currentEvent style="top:  5%; left: 71%; height: 59%; width: 28%; position: absolute;" :events="events" :selected="selected" v-on:next-event="nextEvent()" v-on:prev-event="prevEvent()" />
         <categoryBreakdown style="top: 65%; left:  1%; height: 34%; width: 98%; position: absolute;" :events="events" v-on:sel-event="selEvent" />
-    </v-app>
-    <!-- <column id="app" align-v="top" align-h="left">
-    </column> -->
+    </column>
 </template>
 <style scoped>
+>>> {
+    /* 12 hour view */
+    --one-hour-width: calc(100vw / 12);
+    --fifteen-min-width: calc(var(--one-hour-width) / 4)
+}
+
+/* lock the viewbox for the app */
+#app {
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow: visible;
+}
+
+.magic-bar-container {
+    height: 10%;
+    width: 100%;
+}
+
+.map-and-preview-container {
+    padding: 2rem;
+    height: 50%;
+    width: 100%;
+}
+
+/* 
+    old
+*/
 .card {
     box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
     padding: 2rem;

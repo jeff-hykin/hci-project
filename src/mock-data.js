@@ -12,7 +12,6 @@ let events = [
         startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
         endDateTime: new DateTime([2020, 1, 1, 1, 0, 0]),
         source: "School Calendar",
-        location: [30.618634 /*latitude*/, -96.324496 /*longitude*/],
     },
     {
         name: "Event2",
@@ -21,7 +20,6 @@ let events = [
         startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
         endDateTime: new DateTime([2020, 1, 1, 0, 0, 0]),
         source: "Work Calendar",
-        location: [30.618634 /*latitude*/, -96.324496 /*longitude*/],
     },
     {
         title: "CSCE 482 Exam 3",
@@ -153,7 +151,6 @@ for (let eachIndex in events) {
         startDateTime: new DateTime([2019, 11, 24, eachIndex, 30]),
         endDateTime: new DateTime([2020, 1, 1, eachIndex * 2, 0]),
         source: "School Calendar",
-        location: [30.618634 + eachIndex /*latitude*/, -96.324496 /*longitude*/],
         // nickos data
         title: `CSCE 482 Exam ${eachIndex}`,
         sHour: eachIndex,

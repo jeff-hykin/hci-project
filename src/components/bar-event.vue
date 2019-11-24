@@ -15,8 +15,7 @@ export default {
 .bar-event {
     color: white;
     padding: 1rem 2rem;
-    /* 93% of magic bar height */
-    height: calc(var(--magic-bar-event-height) * .80);
+    height: 80%;
     border-radius: 0.3rem;
     max-width: 10rem;
 }

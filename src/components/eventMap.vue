@@ -1,7 +1,7 @@
 <template>
-    <v-card>
+    <div class=my-card style="height: 100%; width: 100%;">
         <div id="map" style="width: 100%; height: 100%; poisition: fixed; top: 0%; left: 0%;"></div>
-    </v-card>
+    </div>
 </template>
 
 <script>
@@ -42,3 +42,10 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.my-card {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
+    background-color: whitesmoke;
+}
+</style>
