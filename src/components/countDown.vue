@@ -23,7 +23,7 @@ export default {
             let seconds = Math.trunc(miliseconds/(1000)    - hours*60*60 - minutes*60)
             let output
             if (hours == 0) {
-                output = `${minutes}:${padZero(seconds)}`
+                output = `${negative?'-':''}${minutes}:${padZero(seconds)}`
             } else {
                 output = `${negative?'-':''}${hours}:${padZero(minutes)}:${padZero(seconds)}`
             }

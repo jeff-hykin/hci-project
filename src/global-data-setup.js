@@ -60,6 +60,7 @@ watch = {
         if (this.lockedOntoEvent) {
             this.global.cursorHour = this.currentEvent.startDateTime.timeOfDayAsSeconds/(60*60)
         }
+        console.log(`this.currentEvent is:\n`,this.currentEvent.info)
     }
 }
 

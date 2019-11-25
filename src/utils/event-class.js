@@ -53,6 +53,11 @@ let Event = function(input) {
             get() {
                 return (new DateTime().timeOfDayAsSeconds) < this.startDateTime.timeOfDayAsSeconds
             }
+        },
+        info: {
+            get() {
+                return `title: "${this.title}"\nfrom: ${this.startDateTime.toString()}     to: ${this.startDateTime.toString()}\nsource: ${this.source}\ndurationSec: ${this.durationInSeconds}\nstartsInFuture: ${this.startsInFuture}`
+            }
         }
     })
     return input
