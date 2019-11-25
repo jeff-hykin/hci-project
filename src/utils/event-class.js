@@ -9,7 +9,7 @@ let eventClassAttributes = {
         // if the source isn't in the mapping, then add it to the mapping
         if (!(isANumber && possibleEventColors[theColorIndex])) {
             let numberOfExisitngSources = Object.keys(globalData.eventCategoryColorMapping).length
-            theColorIndex = (numberOfExisitngSources+1 % possibleEventColors.length) - 1
+            theColorIndex = (numberOfExisitngSources % (possibleEventColors.length-1))
             globalData.eventCategoryColorMapping[source] = theColorIndex
         }
         // always return the color index
