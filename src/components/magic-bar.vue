@@ -7,16 +7,20 @@
             <column class=bar-event-container v-for='event of this.global.events' :key=event.index>
                 <bar-event :event=event  />
             </column>
+            <weather-icon />
         </row>
     </row>
 </template>
 
 <script>
 import BarEvent from './bar-event'
+import WeatherIcon from './weather-icon'
+
 export default {
     name: "magic-bar",
     components: {
-        'bar-event': BarEvent
+        'bar-event': BarEvent,
+        WeatherIcon,
     },
     computed: {
     }

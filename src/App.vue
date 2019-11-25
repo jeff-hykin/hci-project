@@ -141,6 +141,7 @@ $large-screen: 80rem;
         height: var(--magic-bar-height);
         min-height: var(--magic-bar-height);
         width: 100%;
+        margin-bottom: 1rem;
     }
 
     .map-and-details-section {
@@ -237,5 +238,9 @@ button.ui-button {
 
 body {
     background-color: whitesmoke;
+}
+
+@function asset($path) {
+  @return url("~@/assets/#{$path}");
 }
 </style>
