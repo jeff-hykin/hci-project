@@ -14,10 +14,11 @@
         - event preview
     
     todo:
-        - make clicking on red cursor jump back to watching the current time
         - weather
+        - make clicking on red cursor jump back to watching the current time
         - login/logout button
         - show time until end of event
+        - make notes hover in and out some
         - mobile view
 
     
