@@ -59,10 +59,8 @@ watch = {
     'global.currentEventIndex': function(newValue) {
         if (this.lockedOntoEvent) {
             this.global.cursorHour = this.currentEvent.startDateTime.timeOfDayAsSeconds/(60*60)
+            console.log(`this.global.cursorHour is:`,this.global.cursorHour)
         }
-        // setTimeout(() => {
-
-        // }, 0)
     }
 }
 

@@ -1,12 +1,27 @@
 import DateTime from "good-date"
 
-// TODO: this is just for debugging
 window.DateTime = DateTime
 
 let events = [
     // store events in sorted order by start time
     {
-        name: "Event1",
+        title: "Event1",
+        description: "Do some stuff",
+        subTasks: ["do something beforehand"],
+        startDateTime: new DateTime([2019, 11, 24, 22, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 23, 30]),
+        source: "School Calendar",
+    },
+    {
+        title: "Event2",
+        description: "Do some stuff",
+        subTasks: ["do something beforehand"],
+        startDateTime: new DateTime([2019, 11, 24, 20, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 21, 30]),
+        source: "School Calendar",
+    },
+    {
+        title: "Event3",
         description: "Do some stuff",
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 18, 30]),
@@ -14,7 +29,7 @@ let events = [
         source: "School Calendar",
     },
     {
-        name: "Event1",
+        title: "Event4",
         description: "Do some stuff",
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 20, 30]),
@@ -22,7 +37,7 @@ let events = [
         source: "School Calendar",
     },
     {
-        name: "Event2",
+        title: "Event5",
         description: "Do some more stuff",
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 2, 30]),
@@ -33,10 +48,6 @@ let events = [
         startDateTime: new DateTime([2019, 11, 24, 3, 30]),
         endDateTime:   new DateTime([2019, 11, 24, 4,  0]),
         title: "CSCE 482 Exam 3",
-        sHour: 8,
-        sMinute: 0,
-        eHour: 9,
-        eMinute: 30,
         tag: "CSCE 482",
         description: "This is the third test that will happen and will cover chapters 11, 12, 13, 14",
         position: { lat: 35.6432027, lng: 139.6729435 },
@@ -50,10 +61,6 @@ let events = [
     },
     {
         title: "ENG 111 Class",
-        sHour: 9,
-        sMinute: 50,
-        eHour: 10,
-        eMinute: 40,
         tag: "ENG 111",
         description: "Make sure to bring the legos",
         position: { lat: 35.6432027, lng: 139.6729435 },
@@ -67,10 +74,6 @@ let events = [
     },
     {
         title: "Lunch with Steve",
-        sHour: 12,
-        sMinute: 0,
-        eHour: 13,
-        eMinute: 0,
         tag: "Random",
         description: "Meeting at PIADA",
         position: { lat: 35.6432027, lng: 139.6729435 },
@@ -79,8 +82,6 @@ let events = [
     },
     {
         title: "ENG 111 Project Check",
-        sHour: 10,
-        sMinute: 0,
         day: 1,
         tag: "ENG 111",
         description: "Need to demo labview code turned in",
@@ -90,8 +91,6 @@ let events = [
     },
     {
         title: "Eng 111 Team Meeting",
-        sHour: 10,
-        sMinute: 30,
         day: 1,
         tag: "ENG 111",
         description: "Discussing what to do after turn in",
@@ -101,8 +100,6 @@ let events = [
     },
     {
         title: "Interview with Dell",
-        sHour: 13,
-        sMinute: 0,
         day: 1,
         tag: "Random",
         description: "Online at link in email",
@@ -112,8 +109,6 @@ let events = [
     },
     {
         title: "CSCE 482 HW 3",
-        sHour: 10,
-        sMinute: 0,
         day: 3,
         tag: "CSCE 482",
         description: "HW 3 due",
@@ -123,8 +118,6 @@ let events = [
     },
     {
         title: "CSCE 482 HW 4",
-        sHour: 10,
-        sMinute: 0,
         day: 4,
         tag: "CSCE 482",
         description: "HW 4 due",
@@ -134,8 +127,6 @@ let events = [
     },
     {
         title: "Doctors Appointment",
-        sHour: 10,
-        sMinute: 0,
         day: 4,
         tag: "Random",
         description: "Didn't eat enough apples",
@@ -160,6 +151,7 @@ for (let eachIndex in events) {
     eachIndex-=0
     let genericEvent = {
         // finialized data
+        title: `CSCE 482 Exam ${eachIndex}`,
         description: `do some stuff ${eachIndex}`,
         startDateTime: new DateTime([2019, 11, 24, eachIndex          , 30]),
         endDateTime:   new DateTime([2019, 11, 24, (eachIndex**1.2)%24,  0]),
@@ -170,17 +162,12 @@ for (let eachIndex in events) {
             { title: "sharpen pencil", done: false },
             { title: "cry", done: false },
         ],
+        index: 0,
         // jeffs data
-        subTasks: [`do something beforehand ${eachIndex}`],
         source: events[eachIndex].tag || "School Calendar",
         // nickos data
-        title: `CSCE 482 Exam ${eachIndex}`,
-        sHour: eachIndex,
-        sMinute: 0,
-        eHour: eachIndex + 1,
-        eMinute: 30,
         tag: `CSCE 482 ${eachIndex}`,
-        index: 0,
+        
     }
     // 
     // ensure that every event has something for Jeff's and nickos data

@@ -63,7 +63,7 @@ let App = {
             if (!this.lockedOntoEvent) {
 
                 // check to see if the current event has passed its start time
-                if (this.currentEvent.startDateTime < now && nextEvent) {
+                if (this.currentEventIndex && this.currentEvent.startDateTime < now && nextEvent) {
                     // this assignment should be done even when nextFutureEventIndex is null
                     this.global.currentEventIndex = nextEvent
                 }
@@ -110,7 +110,8 @@ export default App
     --shadow-2: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
     /* 12 hour view */
     --one-hour-width: calc(100vw / 12);
-    --fifteen-min-width: calc(var(--one-hour-width) / 4)
+    --fifteen-min-width: calc(var(--one-hour-width) / 4);
+    --magic-bar-height: 10vh;
 }
 
 /* lock the viewbox for the app */
@@ -122,7 +123,7 @@ export default App
     overflow: visible;
     
     .magic-bar-container {
-        height: 10%;
+        height: var(--magic-bar-height);
         width: 100%;
     }
 

@@ -3,10 +3,18 @@
         <container class=card-head :style='{backgroundColor:color, color:"white"}' shadow=1>
             <h5>{{category}}</h5>
         </container>
+        <!-- padding -->
         <container class=card-body>
-            <ui-button class=category-event v-for='each in events' :key=each.title align-h=left @click='selectEvent(each)'>
-                {{each.title}}
-            </ui-button>
+            <!-- bounding box for scrolling -->
+            <container overflow=auto height=100% width=100%>
+                <!-- overflow box for scrolling -->
+                <container height=max-content width=100%>
+                    <!-- actuall buttons -->
+                    <ui-button class=category-event v-for='each in events' :key=each.title align-h=left @click='selectEvent(each)'>
+                        {{each.title}}
+                    </ui-button>
+                </container>
+            </container>
         </container>
     </container>
 </template>
@@ -43,6 +51,8 @@ export default {
     
     .card-body {
         width: 100%;
+        overflow: hidden;
+        
         .category-event {
             cursor: pointer;
             text-align: left;
