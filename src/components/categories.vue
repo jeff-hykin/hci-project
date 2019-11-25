@@ -11,15 +11,20 @@
             </row>
         </container>
         <!-- Category Preview -->
-        <row class=category-preview height=110% overflow=auto align-h=left>
-            <row height=100% overflow=visible align-h=left>
-                <row v-for='each in this.categories' :key="each" height=90.9%>
+        <row class=category-preview height=110% overflow=auto align-h=left align-v=top>
+            <row height=100% overflow=visible align-h=left align-v=top>
+                <row v-for='each in this.categories' :key="each" height=90.9% align-v=top>
                     <container min-width=2rem />
                     <categoryEvents :category='each' :color='getColorFor(each)' />
                 </row>
                 <container min-width='calc(var(--width) - var(--min-card-size) - 3rem)' />
             </row>
         </row>
+        
+        <!-- Fade -->
+        <div class=fade>
+            
+        </div>
     </container>
 </template>
 
@@ -60,6 +65,7 @@ export default {
     --min-card-size: 17rem;
 }
 .categories {
+    --legend-element-width: 12rem;
     
     
     height: 100%;
@@ -68,7 +74,6 @@ export default {
     padding-right: 0;
     
     .legend {
-        --legend-element-width: 12rem;
         --margin: 15px;
         
         overflow: auto;
@@ -97,10 +102,20 @@ export default {
         }
     }
     
+    --category-preview-width: 90vw;
     .category-preview {
-        --width: 90vw;
         height: 110%;
-        min-width: var(--width);
+        min-width: var(--category-preview-width);
+    }
+    
+    .fade {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        height: 35vh;
+        width: calc(100vw - 4rem - var(--legend-element-width) - calc(var(--category-preview-width) / 2));
+        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 100%);
+        pointer-events: none;
     }
 }
 </style>
