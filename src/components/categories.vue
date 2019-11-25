@@ -59,6 +59,7 @@ export default {
     height: 100%;
     width: 100%;
     padding: 3rem;
+    padding-right: 0;
     
     .legend {
         --legend-element-width: 12rem;
