@@ -9,6 +9,7 @@
         - notes
     
     todo:
+        - make clicking on red cursor jump back to watching the current time
         - fix the notes placement
         - countdown
         - weather

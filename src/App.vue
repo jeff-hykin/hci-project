@@ -89,16 +89,18 @@ export default App
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
-        <row class='map-and-preview-container' align-h=space-evenly>
-            <container class=map-container height=100% width=65% min-height=20rem>
-                <eventMap />
-            </container>
-            <container class=event-detail-container height=100% width=30% min-height=20rem>
+        <row class='main-body' align-h=space-evenly align-v=top>
+            <column width=65% height=100%>
+                <container class=map-container height=60% width=100% min-height=20rem>
+                    <eventMap />
+                </container>
+                <row class=category-container>
+                    <categories />
+                </row>
+            </column>
+            <column class=event-detail-container height=50% width=30% min-height=20rem align-v=top>
                 <eventDetails />
-            </container>
-        </row>
-        <row class=category-container>
-            <categories />
+            </column>
         </row>
         <notes />
     </container>
@@ -127,15 +129,15 @@ export default App
         width: 100%;
     }
 
-    .map-and-preview-container {
+    .main-body {
         padding: 2rem;
         min-height: min-content;
-        height: 50%;
+        height: 90%;
         width: 100%;
     }
     
     .category-container {
-        height: 30%;
+        height: 40%;
         width: 100%;
     }
 }
