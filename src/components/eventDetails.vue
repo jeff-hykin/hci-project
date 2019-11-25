@@ -57,7 +57,7 @@ export default {
 <style lang='scss' scoped>
 .card {
     width: 100%;
-    height: 100%;
+    height: 35rem;
     padding: 2rem;
     background: white;
     
