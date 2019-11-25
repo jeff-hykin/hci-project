@@ -87,26 +87,29 @@ export default App
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
-        <row class='main-body' align-h=space-evenly align-v=top>
-            <column width=65% height=100%>
-                <container class=map-container height=60% width=100% min-height=20rem>
-                    <eventMap />
-                </container>
-                <row class=category-container>
-                    <categories />
-                </row>
-            </column>
-            <column class=event-detail-container height=50% width=30% min-height=20rem align-v=top>
+        <row class='map-and-details-section' align-h=space-evenly align-v=top>
+            <container class=map-section>
+                <eventMap />
+            </container>
+            
+            <column class=details-container>
                 <container margin-bottom=2rem width=100%>
                     <countDown />
                 </container>
                 <eventDetails />
             </column>
         </row>
+        <row class='categories-section'>
+            <categories />
+        </row>
         <notes />
     </container>
 </template>
 <style lang='scss' scoped>
+
+$small-screen: 40rem;
+$large-screen: 80rem;
+
 // pass down to children
 ::v-deep {
     --shadow-1: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
@@ -115,6 +118,11 @@ export default App
     --one-hour-width: calc(100vw / 12);
     --fifteen-min-width: calc(var(--one-hour-width) / 4);
     --magic-bar-height: 10vh;
+    
+    @media screen and (max-width: $small-screen) {
+        // only show 5 hours at a time
+        --one-hour-width: calc(100vw / 3);
+    }
 }
 
 /* lock the viewbox for the app */
@@ -127,19 +135,42 @@ export default App
     
     .magic-bar-container {
         height: var(--magic-bar-height);
+        min-height: var(--magic-bar-height);
         width: 100%;
     }
 
-    .main-body {
+    .map-and-details-section {
+        width: 100vw;
+        min-height: fit-content;
+        flex-wrap: wrap-reverse;
+        align-content: flex-end;
         padding: 2rem;
-        min-height: min-content;
-        height: 90%;
-        width: 100%;
+        @media not screen and (max-width: $large-screen) {
+            --large-padding: calc(3rem + 10vw);
+            padding-left: var(--large-padding);
+            padding-right: var(--large-padding);
+        }
+        
+        --map-margin: 2rem;
+        --map-min-width: 20rem;
+        .map-section {
+            min-height: 20rem;
+            min-width: var(--map-min-width);
+            max-width: 80vw;
+            max-height: 50vh;
+            height: calc(100% - calc(var(--map-margin) * 2));
+            margin: var(--map-margin);
+            margin-left: 0;
+            flex-grow: 1;
+        }
+        
+        .details-container {
+            min-width: 20rem;
+        }
     }
     
-    .category-container {
-        height: 40%;
-        width: 100%;
+    .categories-section {
+        
     }
 }
 
