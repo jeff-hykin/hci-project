@@ -119,6 +119,7 @@ $large-screen: 80rem;
     --fifteen-min-width: calc(var(--one-hour-width) / 4);
     --magic-bar-height: 10vh;
     --categories-height: 20rem;
+    --event-details-width: 25rem;
     
     @media screen and (max-width: $small-screen) {
         // only show 5 hours at a time
@@ -128,11 +129,13 @@ $large-screen: 80rem;
 
 /* lock the viewbox for the app */
 #app {
+    
     height: 100vh;
     max-height: 100vh;
     width: 100vw;
     max-width: 100vw;
     overflow: visible;
+    
     
     .magic-bar-container {
         height: var(--magic-bar-height);
@@ -168,7 +171,7 @@ $large-screen: 80rem;
         }
         
         .details-container {
-            min-width: 20rem;
+            min-width: var(--event-details-width);
         }
     }
     

@@ -22,9 +22,9 @@
         </row>
         
         <!-- Fade -->
-        <div class=fade>
+        <!-- <div class=fade>
             
-        </div>
+        </div> -->
     </container>
 </template>
 

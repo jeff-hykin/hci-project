@@ -56,8 +56,9 @@ export default {
 </script>
 <style lang='scss' scoped>
 .card {
-    width: 100%;
-    height: 100%;
+    width: var(--event-details-width);
+    height: 25rem;
+    max-height: 100%;
     padding: 2rem;
     background: white;
     

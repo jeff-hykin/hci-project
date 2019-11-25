@@ -1,7 +1,7 @@
 <template>
     <row class=bar-wrapper align-h=left>
         <column class=cursor align-v=bottom>
-            <p class=triangle>▲</p>
+            <div class=circle ></div>
         </column>
         <row class='magic-bar' align-h=left :left='`calc(calc(var(--one-hour-width) * -${global.cursorHour}) + var(--cursor-offset))`'>
             <column class=bar-event-container v-for='event of this.global.events' :key=event.index>
@@ -36,14 +36,17 @@ export default {
         position: fixed;
         left: calc(1 * var(--cursor-offset));
         top: 0;
-        width: 3px;
-        height: var(--magic-bar-height);
+        width: 4px;
+        height: calc(var(--magic-bar-height) * 1.2);
         z-index: 9999;
         box-shadow: var(--shadow-2);
-        .triangle {
-            position: relative;
-            top: 0.90rem;
-            left: -0.45px;
+        .circle {
+            --size: 15px;
+            height: var(--size);
+            width: var(--size);
+            background-color: inherit;
+            box-shadow: inherit;
+            border-radius: 100vw;
         }
     }
     
