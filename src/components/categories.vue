@@ -11,7 +11,14 @@
             </row>
         </container>
         <!-- Card Preview -->
-        <categoryEvents :category='selectedCategory' :color='getColorFor(selectedCategory)' />
+        <row height=110% overflow=auto align-h=left>
+            <row height=100% overflow=visible align-h=left>
+                <row v-for='each in this.categories' :key="each" height=90.9%>
+                    <container min-width=2rem />
+                    <categoryEvents :category='each' :color='getColorFor(each)' />
+                </row>
+            </row>
+        </row>
     </container>
 </template>
 
@@ -25,23 +32,24 @@ export default {
         categoryEvents
     },
     data:()=>({
-       selectedCategory: null 
+       categories: [],
     }),
     computed: {
-        categories() {
-            return Object.keys(globalData.eventCategoryColorMapping)
-        }
     },
     methods: {
         getColorFor(category) {
             return Event.getColorFor(category)
         },
         selectCategory(category) {
-            this.selectedCategory = category
+            let index = this.categories.findIndex(each=>each==category)
+            delete this.categories[index]
+            this.categories.unshift(category)
+            this.categories = this.categories.filter(each=>each!=null)
+            console.log(`this.categories is:`,this.categories)
         }
     },
     beforeMount() {
-        this.selectedCategory = this.categories[0]
+        this.categories = Object.keys(globalData.eventCategoryColorMapping)
     }
 }
 </script>
@@ -54,12 +62,12 @@ export default {
     
     .legend {
         --legend-element-width: 12rem;
-        --total-legend-element-width: calc(var(--legend-element-width) + calc(2 * var(--margin)));
         --margin: 15px;
         
         overflow: auto;
         height: 100%;
-        width: var(--total-legend-element-width);
+        min-width: var(--legend-element-width);
+        width: 0;
         
         .category-legend-element {
             margin: var(--margin) var(--margin) 0 0;

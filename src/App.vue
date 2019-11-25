@@ -194,6 +194,7 @@ export default App
 button.ui-button {
     -webkit-box-shadow: none;
     box-shadow: none;
+    z-index: 0;
 }
 
 body {
