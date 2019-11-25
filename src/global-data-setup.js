@@ -38,13 +38,32 @@ let events = mockData.events.map(each=>Event(each))
 // 
 // Data
 // 
+let now = new DateTime()
 let globalData = {
     ...localStorageData,
     currentEventIndex: null,
     events,
+    lockedOntoEvent: false,
+    cursorHour: now.timeOfDayAsSeconds/(60*60),
+    currentTimeSeconds: now.unix/1000,
     weather: [
         // not sure how this data will be formatted, could be hourly
     ],
+}
+
+// 
+// setup additional watchers
+// 
+watch = {
+    ...watch,
+    'global.currentEventIndex': function(newValue) {
+        if (this.lockedOntoEvent) {
+            this.global.cursorHour = this.currentEvent.startDateTime.timeOfDayAsSeconds/(60*60)
+        }
+        // setTimeout(() => {
+
+        // }, 0)
+    }
 }
 
 // 
@@ -56,13 +75,22 @@ let computed = {
             return this.$data.global.events[this.$data.global.currentEventIndex]
         }
     },
+    lockedOntoEvent() {
+        // if event is the current event
+        if (this.$data.global.currentEventIndex == null || this.global.currentEventIndex == this.getNextFutureEventIndex()) {
+            return false
+        // if on any other event, then the current event must be locked onto something
+        } else {
+            return true
+        }
+    }
 }
 
 // 
 // Methods
 // 
 let methods = {
-    getNextFutureEvent() {
+    getNextFutureEventIndex() {
         // compute the next event ignoring the date and only looking at 24 hour times
         let now = new DateTime().timeOfDayAsSeconds
         let indexOfNextEvent = this.$data.global.events.findIndex(eachEvent=>eachEvent.startDateTime && (eachEvent.startDateTime.timeOfDayAsSeconds > now))
@@ -81,6 +109,7 @@ Vue.mixin({
     data() {
         // make global data accessible on the window object
         window.globalData = globalData; setTimeout(()=>window.globalData=this.$data[globalKey], 0)
+        window.data = this
 
         return { [globalKey]: globalData}
     },

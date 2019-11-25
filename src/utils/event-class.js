@@ -34,6 +34,11 @@ let Event = function(input) {
                 return Event.getColorFor(this.source)
             }
         },
+        durationInSeconds: {
+            get() {
+                return (this.startDateTime.unix - this.endDateTime.unix)/1000
+            }
+        },
         numOfFifteenMinuteChunks: {
             get() {
                 let start = this.startDateTime.unix/1000;

@@ -14,15 +14,16 @@
             <div class=spacer></div>
             <!-- Buttons -->
             <row width=100% align-h=space-between>
-                <!-- Previous -->
-                <v-btn :class="['button', {hidden:hidePreviousEventButton}]" text @click="prevEvent">
-                    Previous
-                </v-btn>
                 <!-- Open in Calendar -->
                 <v-btn :class="['calendarButton', {hidden:!currentEvent.url}]" text >
                     View on Calendar
                 </v-btn>
-                
+            </row>
+            <row width=100% align-h=space-between>
+                <!-- Previous -->
+                <v-btn :class="['button', {hidden:hidePreviousEventButton}]" text @click="prevEvent">
+                    Prev
+                </v-btn>
                 <!-- Next -->
                 <v-btn :class="['button', {hidden:hideNextEventButton}]" text @click="nextEvent">
                     Next

@@ -21,7 +21,7 @@ export default {
     data: () => ({}),
     computed: {
         events() {
-            return this.global.events.filter(each => each.startsInFuture && each.source == this.category)
+            return this.global.events.filter(each => each.source == this.category)
         }
     },
     methods: {

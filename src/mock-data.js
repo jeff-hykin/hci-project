@@ -9,19 +9,29 @@ let events = [
         name: "Event1",
         description: "Do some stuff",
         subTasks: ["do something beforehand"],
-        startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
-        endDateTime: new DateTime([2020, 1, 1, 1, 0, 0]),
+        startDateTime: new DateTime([2019, 11, 24, 18, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 19, 30]),
+        source: "School Calendar",
+    },
+    {
+        name: "Event1",
+        description: "Do some stuff",
+        subTasks: ["do something beforehand"],
+        startDateTime: new DateTime([2019, 11, 24, 20, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 22,  0]),
         source: "School Calendar",
     },
     {
         name: "Event2",
         description: "Do some more stuff",
         subTasks: ["do something beforehand"],
-        startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
-        endDateTime: new DateTime([2020, 1, 1, 0, 0, 0]),
+        startDateTime: new DateTime([2019, 11, 24, 2, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 3,  0]),
         source: "Work Calendar",
     },
     {
+        startDateTime: new DateTime([2019, 11, 24, 3, 30]),
+        endDateTime:   new DateTime([2019, 11, 24, 4,  0]),
         title: "CSCE 482 Exam 3",
         sHour: 8,
         sMinute: 0,
@@ -136,6 +146,9 @@ let events = [
             { title: "Get checked for extra-toe-itus", done: false },
         ],
     },
+    {
+
+    }
 ]
 
 
@@ -143,11 +156,13 @@ let events = [
 // auto generate missing data
 // 
 for (let eachIndex in events) {
+    // convert it to a number from a string
+    eachIndex-=0
     let genericEvent = {
         // finialized data
         description: `do some stuff ${eachIndex}`,
-        startDateTime: new DateTime([2019, 11, 24, eachIndex, 30]),
-        endDateTime: new DateTime([2020, 1, 1, eachIndex * 2, 0]),
+        startDateTime: new DateTime([2019, 11, 24, eachIndex          , 30]),
+        endDateTime:   new DateTime([2019, 11, 24, (eachIndex**1.2)%24,  0]),
         position: { lat: 35.6432027 + eachIndex * 2, lng: -96.324496 },
         tasks: [
             { title: "Study", done: false },
@@ -170,7 +185,24 @@ for (let eachIndex in events) {
     // 
     // ensure that every event has something for Jeff's and nickos data
     // 
-    events[eachIndex] = {  ...genericEvent, ...events[eachIndex], index: eachIndex }
+    events[eachIndex] = {  ...genericEvent, ...events[eachIndex]}
+}
+
+events = events.sort((each1, each2)=>{
+    each1 = each1.startDateTime.timeOfDayAsSeconds
+    each2 = each2.startDateTime.timeOfDayAsSeconds
+    if (each1 < each2) {
+        return -1;
+    }
+    if (each1 > each2) {
+        return 1;
+    }
+    return 0;
+})
+
+// update the indexes after sorting
+for (let each in events) {
+    events[each].index = each
 }
 
 export default {

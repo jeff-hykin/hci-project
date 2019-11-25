@@ -47,20 +47,32 @@ let App = {
         notes,
     },
     data: () => ({}),
-    computed: {
-        nextEvents: function() {
-            var temp = []
-            for (var event in this.events) {
-                if (this.events[event].sHour > this.currentHour || (this.events[event].sHour == this.currentHour && this.events[event].sMinute >= thiscurrentMinute)) temp.push(this.events[event])
-            }
-            return temp
-        },
-    },
+    computed: {},
     watch: {},
-    methods: {
-    },
+    methods: {},
     mounted() {
-        this.global.currentEventIndex = this.getNextFutureEvent()
+        this.global.currentEventIndex = this.getNextFutureEventIndex()
+        // setup the countdown
+        setInterval(() => {
+            let now = new DateTime()
+            // set the new time
+            this.global.currentTimeSeconds = now.unix/1000
+            
+            let nextEvent = this.getNextFutureEventIndex()
+            // if not locked onto an event
+            if (!this.lockedOntoEvent) {
+
+                // check to see if the current event has passed its start time
+                if (this.currentEvent.startDateTime < now && nextEvent) {
+                    // this assignment should be done even when nextFutureEventIndex is null
+                    this.global.currentEventIndex = nextEvent
+                }
+                
+                // then update the cursor hour
+                this.global.cursorHour = now.timeOfDayAsSeconds/(60*60)
+            }
+            
+        }, 1000)
     },
 }
 
@@ -85,15 +97,17 @@ export default App
                 <eventDetails />
             </container>
         </row>
-        <container class=category-container>
+        <row class=category-container>
             <categories />
-        </container>
+        </row>
         <notes />
     </container>
 </template>
 <style lang='scss' scoped>
 // pass down to children
 ::v-deep {
+    --shadow-1: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
+    --shadow-2: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
     /* 12 hour view */
     --one-hour-width: calc(100vw / 12);
     --fifteen-min-width: calc(var(--one-hour-width) / 4)
@@ -129,11 +143,6 @@ export default App
 
 <!-- Global CSS -->
 <style lang='scss'>
-:root {
-    --shadow-1: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px;
-    --shadow-2: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
-}
-
 .card {
     --padding: 0.8rem 1rem;
     

@@ -1,5 +1,12 @@
 <template>
-    <row class='bar-event' align-h=left :backgroundColor=event.color :width='`calc(var(--fifteen-min-width) * ${event.numOfFifteenMinuteChunks} )`'>
+    <row 
+        class='bar-event'
+        align-h=left
+        :backgroundColor=event.color
+        :width='`calc(var(--fifteen-min-width) * ${event.numOfFifteenMinuteChunks} )`'
+        :left='`calc(var(--one-hour-width) * ${numberOfHoursUntilStart} )`'
+        @click="selectEvent"
+        >
         <container class=spacer width=2rem />
         <div class=ellipsis-overflow>
             {{event.title}}
@@ -21,17 +28,30 @@
 <script>
 export default {
     props: ['event'],
+    computed: {
+        numberOfHoursUntilStart() {
+            let time = this.event.startDateTime
+            let output = (time.hour24-0)+(time.minute/ 60)
+            return output
+        }
+    },
+    methods: {
+        selectEvent() {
+            this.global.currentEventIndex = this.event.index
+        }
+    }
 }
 </script>
 
 <style lang='scss' scoped>
-/* TODO: ellipses of text if too long */
 .bar-event {
     color: white;
     padding: 1rem 0;
     height: 80%;
     border-radius: 0.3rem;
-    max-width: 10rem;
+    position: absolute;
+    overflow: scroll;
+    border: 2px whitesmoke solid;
     
     .spacer {
         flex-grow: 0;
