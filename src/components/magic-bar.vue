@@ -14,6 +14,7 @@
 <script>
 import BarEvent from './bar-event'
 export default {
+    name: "magic-bar"
     components: {
         'bar-event': BarEvent
     },

@@ -50,7 +50,7 @@ export default {
     height: 80%;
     border-radius: 0.3rem;
     position: absolute;
-    overflow: scroll;
+    overflow: auto;
     border: 2px whitesmoke solid;
     
     .spacer {
