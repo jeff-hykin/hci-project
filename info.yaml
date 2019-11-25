@@ -7,52 +7,18 @@
         - map
         - calculate the categories/sources color legened from the events
         - notes
+        - fix the notes placement
+        - countdown
+        - magic-bar
+        - scroll on select event
+        - event preview
     
     todo:
         - make clicking on red cursor jump back to watching the current time
-        - fix the notes placement
-        - countdown
         - weather
-        - add urls to events
-        - magic-bar:
-            - have the magic bar be 48 hours long
-            - have every event in the bar be absolutely positioned based on their 24-hour time
-            - have the magic-bar-offset assume that the magic-box starts at 12am
-              and then shift it left to match the current time
-            - on page load, set the magic bar offset to change with the current time
-            - on click of an event, set the magic bar offset to be the start time of that event
-            - have the weather basically be a special kind of event
-            - have a magic-bar-width value that propogates to every event and weather to change the zoom level
-        
-        - on page load:
-            - initilize the future events list
-            - change offset with time = true
-            - start timer
-        
-        - on timer-tick:
-            - update countdown
-            - if currentEvent is in the past, remove it from the future events list
-            - if selected event == null then have cursor = current time
-            - else have cursor = start time of event
-            
-        - on select event:
-            - if selected event is the first future event, set selected event to null
-            - else assign the selected event
-        
-        - event preview:
-            - if selected event is null, show next future event (if any)
-            - show countdown
-            - show sub tasks checkboxes
-            - next / back button
-            - have open-in-calendar button
-            - add a URL field to each event
-        
         - login/logout button
-        - developer settings panel
-    
-    future:
-        - mobile view
         - show time until end of event
+        - mobile view
 
     
     commands: &commands # if you dont know what the & means, see https://blog.daemonl.com/2016/02/yaml.html

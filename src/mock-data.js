@@ -10,7 +10,7 @@ let events = [
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 22, 30]),
         endDateTime:   new DateTime([2019, 11, 24, 23, 30]),
-        source: "School Calendar",
+        source: "Personal Calendar",
     },
     {
         title: "Event2",
@@ -26,7 +26,7 @@ let events = [
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 18, 30]),
         endDateTime:   new DateTime([2019, 11, 24, 19, 30]),
-        source: "School Calendar",
+        source: "Friends Calendar",
     },
     {
         title: "Event4",
@@ -34,7 +34,7 @@ let events = [
         subTasks: ["do something beforehand"],
         startDateTime: new DateTime([2019, 11, 24, 20, 30]),
         endDateTime:   new DateTime([2019, 11, 24, 22,  0]),
-        source: "School Calendar",
+        source: "Appointments",
     },
     {
         title: "Event5",
@@ -87,6 +87,7 @@ let events = [
         description: "Need to demo labview code turned in",
         position: { lat: 35.6432027, lng: 139.6729435 },
         index: 3,
+        source: "School Calendar",
         tasks: [{ title: "Delete project code", done: false }],
     },
     {
@@ -153,8 +154,8 @@ for (let eachIndex in events) {
         // finialized data
         title: `CSCE 482 Exam ${eachIndex}`,
         description: `do some stuff ${eachIndex}`,
-        startDateTime: new DateTime([2019, 11, 24, eachIndex          , 30]),
-        endDateTime:   new DateTime([2019, 11, 24, (eachIndex**1.2)%24,  0]),
+        startDateTime: new DateTime([2019, 11, 24,  eachIndex      ,  0]),
+        endDateTime:   new DateTime([2019, 11, 24, (eachIndex+1)%24,  0]),
         position: { lat: 35.6432027 + eachIndex * 2, lng: -96.324496 },
         tasks: [
             { title: "Study", done: false },

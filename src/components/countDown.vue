@@ -19,9 +19,6 @@ export default {
             let hours   = Math.trunc(miliseconds/(1000*60*60))
             let minutes = Math.trunc(miliseconds/(1000*60) - hours*60)
             let seconds = Math.trunc(miliseconds/(1000)    - hours*60*60 - minutes*60)
-            console.log(`hours is:`,hours)
-            console.log(`minutes is:`,minutes)
-            console.log(`seconds is:`,seconds)
             return `${negative?'-':''}${hours}:${padZero(minutes)}:${padZero(seconds)}`
         }
     }

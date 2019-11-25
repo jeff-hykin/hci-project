@@ -1,6 +1,6 @@
 <template>
-    <container class=card height=100% width=100%>
-        <div id="map" style="width: 100%; height: 100%; poisition: fixed; top: 0%; left: 0%;"></div>
+    <container class='map-container card' height=100% width=100%>
+        <div id="map"></div>
     </container>
 </template>
 
@@ -21,27 +21,38 @@ export default {
     },
     methods: {
         initializeMap() {
-            const mapContainer = this.$el.querySelector("#map")
-            const { Map } = this.google.maps
-            this.map = new Map(mapContainer, this.mapConfig)
-            const { Marker } = this.google.maps
-            this.marker = new Marker({
-                position: this.currentEvent.position,
-                map: this.map,
-                title: "Child marker!",
+            GoogleMapsApiLoader({
+                apiKey: this.apiKey,
+            }).then(google => {
+                this.google = google
+                const mapContainer = this.$el.querySelector("#map")
+                const { Map } = this.google.maps
+                this.map = new Map(mapContainer, this.mapConfig)
+                const { Marker } = this.google.maps
+                this.marker = new Marker({
+                    position: this.currentEvent.position,
+                    map: this.map,
+                    title: "Child marker!",
+                })
             })
         },
     },
-    mounted() {
-        GoogleMapsApiLoader({
-            apiKey: this.apiKey,
-        }).then(google => {
-            this.google = google
+    watch: {
+        'global.currentEventIndex': function(newValue) {
             this.initializeMap()
-        })
+        }
+    },
+    mounted() {
+        this.initializeMap()
     },
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+.map-container {
+    * {
+        height: 100%;
+        width: 100%;
+    }
+}
 </style>

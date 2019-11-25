@@ -49,15 +49,17 @@ export default {
 <style lang='scss' scoped>
 .categories {
     height: 100%;
+    width: 100%;
     padding: 3rem;
     
     .legend {
         --legend-element-width: 12rem;
+        --total-legend-element-width: calc(var(--legend-element-width) + calc(2 * var(--margin)));
         --margin: 15px;
         
         overflow: auto;
         height: 100%;
-        width: calc(2 * calc(var(--legend-element-width) + calc(2 * var(--margin))));
+        width: var(--total-legend-element-width);
         
         .category-legend-element {
             margin: var(--margin) var(--margin) 0 0;
