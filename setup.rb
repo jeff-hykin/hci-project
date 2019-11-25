@@ -12,3 +12,12 @@ if not Console.has_command("npm")
 end
 
 system "npm install"
+
+puts <<-HEREDOC
+    
+    ============================================================
+    If you see an error above about #{'fevents'.blue} or #{'sass-loader'.blue}
+    you can probably ignore it
+    ============================================================
+    just try going into the project directory and run `#{'_ serve'.light_magenta}`
+HEREDOC
