@@ -112,7 +112,7 @@ export default {
         position: fixed;
         bottom: 0;
         right: 0;
-        height: 35vh;
+        height: calc(var(--categories-height) * 1.1);
         width: calc(100vw - 4rem - var(--legend-element-width) - calc(var(--category-preview-width) / 2));
         background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 100%);
         pointer-events: none;

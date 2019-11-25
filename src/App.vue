@@ -87,8 +87,8 @@ export default App
         <div class='magic-bar-container'>
             <magic-bar />
         </div>
-        <row class='map-and-details-section' align-h=space-evenly align-v=top>
-            <container class=map-section>
+        <row class='map-and-details-section' align-h=space-evenly align-v=center>
+            <container class=map-section height=30rem>
                 <eventMap />
             </container>
             
@@ -118,6 +118,7 @@ $large-screen: 80rem;
     --one-hour-width: calc(100vw / 12);
     --fifteen-min-width: calc(var(--one-hour-width) / 4);
     --magic-bar-height: 10vh;
+    --categories-height: 20rem;
     
     @media screen and (max-width: $small-screen) {
         // only show 5 hours at a time
@@ -145,6 +146,8 @@ $large-screen: 80rem;
         flex-wrap: wrap-reverse;
         align-content: flex-end;
         padding: 2rem;
+        padding-bottom: 0;
+        
         @media not screen and (max-width: $large-screen) {
             --large-padding: calc(3rem + 10vw);
             padding-left: var(--large-padding);
@@ -170,7 +173,8 @@ $large-screen: 80rem;
     }
     
     .categories-section {
-        
+        height: var(--categories-height);
+        width: 100vw;
     }
 }
 
