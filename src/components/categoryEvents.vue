@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 .card {
     height: 100%;
-    min-width: 20rem;
+    min-width: var(--min-card-size);
     min-height: 10rem;
     
     .card-head {

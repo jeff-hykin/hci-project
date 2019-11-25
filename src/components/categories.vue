@@ -10,13 +10,14 @@
                 </row>
             </row>
         </container>
-        <!-- Card Preview -->
-        <row height=110% overflow=auto align-h=left>
+        <!-- Category Preview -->
+        <row class=category-preview height=110% overflow=auto align-h=left>
             <row height=100% overflow=visible align-h=left>
                 <row v-for='each in this.categories' :key="each" height=90.9%>
                     <container min-width=2rem />
                     <categoryEvents :category='each' :color='getColorFor(each)' />
                 </row>
+                <container min-width='calc(var(--width) - var(--min-card-size) - 3rem)' />
             </row>
         </row>
     </container>
@@ -55,7 +56,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+::v-deep {
+    --min-card-size: 17rem;
+}
 .categories {
+    
+    
     height: 100%;
     width: 100%;
     padding: 3rem;
@@ -91,14 +97,10 @@ export default {
         }
     }
     
-    .card {
-        height: 100%;
-        min-width: 20rem;
-        min-height: 10rem;
-        
-        .card-head {
-            transition: all 300ms ease-out;
-        }
+    .category-preview {
+        --width: 90vw;
+        height: 110%;
+        min-width: var(--width);
     }
 }
 </style>

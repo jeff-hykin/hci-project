@@ -54,7 +54,7 @@ let App = {
         setInterval(() => {
             let now = new DateTime()
             // set the new time
-            this.global.currentTime = now.unix
+            this.global.currentTime = now
             
             let nextEvent = this.getNextFutureEventIndex()
             // if not locked onto an event

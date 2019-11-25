@@ -45,7 +45,7 @@ let globalData = {
     events,
     lockedOntoEvent: false,
     cursorHour: now.timeOfDayAsSeconds/(60*60),
-    currentTime: now.unix,
+    currentTime: now,
     weather: [
         // not sure how this data will be formatted, could be hourly
     ],

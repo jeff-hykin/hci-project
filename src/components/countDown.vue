@@ -13,7 +13,13 @@ export default {
     name: "countDown",
     computed:{
         countDown() {
-            let miliseconds = this.currentEvent.startDateTime.unix - this.global.currentTime
+            let eventSeconds = this.currentEvent.startDateTime.timeOfDayAsSeconds
+            let currentSeconds = this.global.currentTime.timeOfDayAsSeconds
+            console.log(`this.global.currentTime is:`,this.global.currentTime)
+            console.log(`eventSeconds is:`,eventSeconds)
+            console.log(`currentSeconds is:`,currentSeconds)
+            console.log(`this.global.currentTime.unix - currentSeconds*1000 is:`,this.global.currentTime.unix - currentSeconds*1000)
+            let miliseconds =  (this.global.currentTime.unix - currentSeconds*1000) + eventSeconds*1000 - this.global.currentTime.unix
             let negative = miliseconds < 0
             miliseconds = Math.abs(miliseconds)
             let hours   = Math.trunc(miliseconds/(1000*60*60))
