@@ -12,14 +12,23 @@
         - magic-bar
         - scroll on select event
         - event preview
-    
     todo:
+        - get a constant height for the card
+        - test on laptop
+        - debug windows
+        - create new mock events
+        - make the fade out be positioned relative to categories instead of what it is now
+        - update server
+        
+    future:
+        - login/logout button
+        - mobile view:
+            - make notes pop out (or dissapear)
+            - make categories align themselves (or dissapear)
         - weather
         - make clicking on red cursor jump back to watching the current time
-        - login/logout button
         - show time until end of event
         - make notes hover in and out some
-        - mobile view
 
     
     commands: &commands # if you dont know what the & means, see https://blog.daemonl.com/2016/02/yaml.html
