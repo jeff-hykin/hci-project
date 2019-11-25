@@ -18,13 +18,12 @@ import setupGlobalData from "./global-data-setup"
 //
 // imported components
 //
-import ToDo from "./components/to-do"
 import MagicBar from "./components/magic-bar"
-import categoryBreakdown from "./components/categoryBreakdown"
 import eventDetails from "./components/eventDetails"
 import eventMap from "./components/eventMap"
 import categories from './components/categories'
 import notes from './components/notes'
+import countDown from './components/countDown'
 
 // 
 // utils
@@ -38,13 +37,12 @@ let App = {
     name: "App",
     vuetify,
     components: {
-        ToDo,
         MagicBar,
-        categoryBreakdown,
         eventDetails,
         eventMap,
         categories,
         notes,
+        countDown,
     },
     data: () => ({}),
     computed: {},
@@ -56,7 +54,7 @@ let App = {
         setInterval(() => {
             let now = new DateTime()
             // set the new time
-            this.global.currentTimeSeconds = now.unix/1000
+            this.global.currentTime = now.unix
             
             let nextEvent = this.getNextFutureEventIndex()
             // if not locked onto an event
@@ -99,6 +97,9 @@ export default App
                 </row>
             </column>
             <column class=event-detail-container height=50% width=30% min-height=20rem align-v=top>
+                <container margin-bottom=2rem width=100%>
+                    <countDown />
+                </container>
                 <eventDetails />
             </column>
         </row>
@@ -150,7 +151,7 @@ export default App
     --padding: 0.8rem 1rem;
     
     box-shadow: var(--shadow-2);
-    background: whitesmoke;
+    background: white;
     border-radius: 1rem;
     
     .card-head {
@@ -193,5 +194,9 @@ export default App
 button.ui-button {
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+body {
+    background-color: whitesmoke;
 }
 </style>

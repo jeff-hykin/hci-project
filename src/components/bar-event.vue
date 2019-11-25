@@ -27,6 +27,7 @@
 
 <script>
 export default {
+    name: "bar-event",
     props: ['event'],
     computed: {
         numberOfHoursUntilStart() {

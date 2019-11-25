@@ -7,7 +7,7 @@
 <script>
 import GoogleMapsApiLoader from "google-maps-api-loader"
 export default {
-    name: "EventMap",
+    name: "eventMap",
     data: () => ({
         apiKey: "AIzaSyD86cLvPkOdZXVKMrQUvFkkrydo-HW5XH8",
         google: null,

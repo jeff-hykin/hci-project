@@ -13,9 +13,9 @@
             <div class=spacer></div>
             <div class=spacer></div>
             <!-- Buttons -->
-            <row width=100% align-h=space-between>
+            <row v-if=currentEvent.url width=100% align-h=space-between>
                 <!-- Open in Calendar -->
-                <v-btn :class="['calendarButton', {hidden:!currentEvent.url}]" text >
+                <v-btn :class="['calendarButton']" text >
                     View on Calendar
                 </v-btn>
             </row>
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-    name: "currentEvent",
+    name: "eventDetails",
     computed: {
         hideNextEventButton() {
             return !this.global.events[this.global.currentEventIndex+1]
