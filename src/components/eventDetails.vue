@@ -73,7 +73,7 @@ export default {
     }
     .subtasks {
         height: 40%;
-        overflow: scroll;
+        overflow: auto;
         padding-left: 2rem; 
     }
     .spacer {
