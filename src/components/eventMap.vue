@@ -43,7 +43,9 @@ export default {
         }
     },
     mounted() {
-        this.initializeMap()
+        setTimeout(() => {
+            this.initializeMap()
+        }, 0);
     },
 }
 </script>
