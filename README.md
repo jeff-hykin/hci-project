@@ -1,6 +1,8 @@
 # hci-project
 
 ## Project setup
+install atk from here: https://github.com/aggie-tool-kit/atk
+
 ```
 atk setup jeff-hykin/hci-project
 ```
