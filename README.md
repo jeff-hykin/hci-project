@@ -2,28 +2,8 @@
 
 ## Project setup
 ```
-npm install
+atk setup jeff-hykin/hci-project
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Preview
+![photo_2019-11-25 19 06 49](https://user-images.githubusercontent.com/17692058/69590943-be561b00-0fb6-11ea-8726-d1a0e0b20c58.jpeg)
