@@ -38,7 +38,7 @@ let events = mockData.events.map(each=>Event(each))
 // 
 // Data
 // 
-let now = new DateTime()
+let now = window.now()
 let globalData = {
     ...localStorageData,
     currentEventIndex: null,
@@ -90,7 +90,7 @@ let computed = {
 let methods = {
     getNextFutureEventIndex() {
         // compute the next event ignoring the date and only looking at 24 hour times
-        let now = new DateTime().timeOfDayAsSeconds
+        let now = window.now().timeOfDayAsSeconds
         let indexOfNextEvent = this.$data.global.events.findIndex(eachEvent=>eachEvent.startDateTime && (eachEvent.startDateTime.timeOfDayAsSeconds > now))
         if (indexOfNextEvent == -1) {
             return null

@@ -45,8 +45,9 @@ export default {
 }
 
 .weather-container {
+    pointer-events: none; // be able to click through
     position: absolute;
-    z-index: 999999;
+    z-index: 1;
     transition: all 1000ms ease;
     top: calc(var(--magic-bar-height) - 3rem);
     

@@ -28,7 +28,7 @@ export default {
                 output = `${negative?'-':''}${hours}:${padZero(minutes)}:${padZero(seconds)}`
             }
             // set the title of the page
-            // document.title = output
+            document.title = output
             return output
         }
     }

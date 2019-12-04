@@ -2,6 +2,11 @@
 import Vue from "vue"
 Vue.config.productionTip = false
 
+// 
+// utils
+// 
+import DateTime from 'good-date'
+
 //
 // plugins
 //
@@ -25,10 +30,6 @@ import categories from './components/categories'
 import notes from './components/notes'
 import countDown from './components/countDown'
 
-// 
-// utils
-// 
-import DateTime from 'good-date'
 
 //
 // App
@@ -52,7 +53,7 @@ let App = {
         this.global.currentEventIndex = this.getNextFutureEventIndex()
         // setup the countdown
         setInterval(() => {
-            let now = new DateTime()
+            let now = window.now()
             // set the new time
             this.global.currentTime = now
             

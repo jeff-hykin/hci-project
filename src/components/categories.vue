@@ -17,14 +17,15 @@
                     <container min-width=2rem />
                     <categoryEvents :category='each' :color='getColorFor(each)' />
                 </row>
-                <container min-width='calc(var(--width) - var(--min-card-size) - 3rem)' />
+                <!-- min width should be the size of the notes container -->
+                <container min-width='30rem' />
             </row>
         </row>
         
         <!-- Fade -->
-        <!-- <div class=fade>
+        <div class=fade>
             
-        </div> -->
+        </div>
     </container>
 </template>
 
@@ -108,14 +109,19 @@ export default {
         min-width: var(--category-preview-width);
     }
     
-    .fade {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        height: calc(var(--categories-height) * 1.1);
-        width: calc(100vw - 4rem - var(--legend-element-width) - calc(var(--category-preview-width) / 2));
-        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 100%);
-        pointer-events: none;
+    $large-screen: 80rem;
+    
+    @media not screen and (max-width: $large-screen) {
+        .fade {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            height: calc(var(--categories-height) * 0.7);
+            width: 35vw;
+            // width: calc(100vw - 4rem - var(--legend-element-width) - calc(var(--category-preview-width) / 2));
+            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 100%);
+            pointer-events: none;
+        }
     }
 }
 </style>

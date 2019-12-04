@@ -20,8 +20,8 @@ let eventClassAttributes = {
 
 // input is expected to have:
 //     {
-//         startDateTime: new DateTime([2019, 12, 31, 23, 59, 59]),
-//         endDateTime: new DateTime([2020, 1, 1, 0, 0, 0]),
+//         startDateTime: window.now([2019, 12, 31, 23, 59, 59]),
+//         endDateTime: window.now([2020, 1, 1, 0, 0, 0]),
 //         source: "School Calendar",
 //     },
 let Event = function(input) {
@@ -51,7 +51,7 @@ let Event = function(input) {
         },
         startsInFuture: {
             get() {
-                return (new DateTime().timeOfDayAsSeconds) < this.startDateTime.timeOfDayAsSeconds
+                return (window.now().timeOfDayAsSeconds) < this.startDateTime.timeOfDayAsSeconds
             }
         },
         info: {

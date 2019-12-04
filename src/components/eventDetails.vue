@@ -21,11 +21,11 @@
             </row>
             <row width=100% align-h=space-between>
                 <!-- Previous -->
-                <v-btn :class="['button', {hidden:hidePreviousEventButton}]" text @click="prevEvent">
+                <v-btn :class="['button', {hidden:hidePreviousEventButton()}]" text @click="prevEvent">
                     Prev
                 </v-btn>
                 <!-- Next -->
-                <v-btn :class="['button', {hidden:hideNextEventButton}]" text @click="nextEvent">
+                <v-btn :class="['button', {hidden:hideNextEventButton()}]" text @click="nextEvent">
                     Next
                 </v-btn>
             </row>
@@ -37,14 +37,15 @@
 export default {
     name: "eventDetails",
     computed: {
+
+    },
+    methods: {
         hideNextEventButton() {
             return !this.global.events[this.global.currentEventIndex+1]
         },
         hidePreviousEventButton() {
             return !this.global.events[this.global.currentEventIndex-1]
-        }
-    },
-    methods: {
+        },
         nextEvent() {
             this.global.currentEventIndex += 1
         },
