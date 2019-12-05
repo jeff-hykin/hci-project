@@ -5,7 +5,7 @@ import DateTime from "good-date"
 window.now = (...dateTimeArgs)=>{
     let actualTime = new DateTime(...dateTimeArgs)
     let twoHoursInMiliseconds = 7.2e+6 // 2 * 60 *60 * 1000 
-    actualTime.time = `${actualTime.hour24 - 3}:${actualTime.minute}:${actualTime.second}`
+    actualTime.time = `${actualTime.hour24 - 4}:${actualTime.minute}:${actualTime.second}`
     return actualTime
 }
 
