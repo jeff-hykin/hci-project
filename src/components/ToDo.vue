@@ -47,6 +47,12 @@ export default {
                             dateTime = new Date((new Date(match[1])).getTime() + Math.abs(timezoneReference.getTimezoneOffset()*60000))
                         }
                         dateTime.setHours(time[0], time[1])
+                        if (match[1] == null) {
+                            if (dateTime.getTime() <= (new Date()).getTime()) {
+                                let oneDayInMiliseconds = 24*60*60*1000
+                                dateTime = new Date(dateTime.getTime()+oneDayInMiliseconds)
+                            }
+                        }
                         // if it is a future event
                         if (dateTime.getTime() > (new Date()).getTime()) {
                             todos.push({
