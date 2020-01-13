@@ -1,15 +1,26 @@
 <template>
-     <ui-textbox
-            ref='textbox'
-            floating-label
-            label="Your todo's "
-            placeholder="(mm/dd/yyyy hh:mm I need to start typing)"
-            :multi-line="true"
-            v-model="text"
-            style="font-size: 14pt !important; width: 25rem;"
-            class="todo-textbox"
-            :autosize="true"
-        />
+    <div>
+        <ui-textbox
+                ref='textbox'
+                floating-label
+                label="Your todo's "
+                placeholder="(mm/dd/yyyy hh:mm I need to start typing)"
+                :multi-line="true"
+                v-model="text"
+                style="font-size: 14pt !important; width: 25rem;"
+                :rows=5
+                class="todo-textbox"
+                :autosize="true"
+            />
+        <column v-for="each in reocurringTasks" v-bind:key='each&&Math.random()' class=card align-h=left padding=1.2rem margin-top=1rem  width=-webkit-fill-available>
+            <row >
+                <b>{{each.start}}</b> <div style="width: 0.8rem" ></div> {{each.description}}
+            </row >
+            <row >
+                <b>Days:</b><div style="width: 0.8rem" ></div> {{each.days.join(", ")}}
+            </row>
+        </column>    
+    </div>
 </template>
 
 <script>
@@ -22,16 +33,83 @@ const convertTime12to24 = (hours, minutes, pmOrAm) => {
     }
     return [hours, minutes]
 }
+import DateTime from 'good-date'
 
 
 export default {
     data: ()=>({
         text: "",
         tasks: [],
+        reocurringTasks: [
+            {
+                description: "Chem",
+                start: "9:10am",
+                days: [ "Monday", "Wednesday", "Friday" ],
+            },
+            {
+                description: "Capstone",
+                start: "11:15am",
+                days: [ "Monday", "Wednesday", ],
+            },
+            {
+                description: "Geo",
+                start: "5:45pm",
+                days: [ "Monday" ],
+            },
+            {
+                description: "Geo",
+                start: "2:20pm",
+                days: [ "Tuesday", "Thursday" ],
+            },
+            {
+                description: "Chem",
+                start: "6:30pm",
+                days: [ "Tuesday",],
+            },
+            {
+                description: "Kine",
+                start: "9:30pm",
+                days: [ "Thursday",],
+            },
+        ],
     }),
     methods: {
+        generateReocurringTasks() {
+            let now = new DateTime
+            let todayName = now.dayName
+            let tomorrowName = now.add({days: 1}).dayName
+            
+            let activeTasks = []
+            for (let each of this.reocurringTasks) {
+                // add to today
+                if (each.days.includes(todayName)) {
+                    let eventDateTime = new DateTime()
+                    eventDateTime.time = each.start
+                    activeTasks.push({
+                        dateTime: eventDateTime,
+                        date: eventDateTime.date,
+                        hour: eventDateTime.hour24,
+                        minute: eventDateTime.minute,
+                        content: each.description,
+                    })
+                }
+                // add to tomorrow
+                if (each.days.includes(tomorrowName)) {
+                    let eventDateTime = new DateTime().add({days: 1})
+                    eventDateTime.time = each.start
+                    activeTasks.push({
+                        dateTime: eventDateTime,
+                        date: eventDateTime.date,
+                        hour: eventDateTime.hour24,
+                        minute: eventDateTime.minute,
+                        content: each.description,
+                    })
+                }
+            }
+            return activeTasks
+        },
+        
         parseUpcomingTodos(text, timezoneReference=(new Date())) {
-            console.log(`text is:`,text)
             let todos = []
             if (text) {
                 let lines = text.split(/\n(?=\S)/)
@@ -67,13 +145,13 @@ export default {
                 }
             }
             todos = todos.sort((a,b)=>a.dateTime.getTime() - b.dateTime.getTime())
-            console.log(`todos is:`,todos)
             return todos
         }
     },
     watch: {
         text() {
-            this.tasks = this.parseUpcomingTodos(this.text)
+            this.tasks = this.parseUpcomingTodos(this.text).concat(this.generateReocurringTasks())
+            console.log(`this.tasks is:`,this.tasks)
             localStorage.setItem('todos',this.text)
         },
         tasks() {
