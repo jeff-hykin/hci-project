@@ -152,7 +152,6 @@ export default {
     mounted() {
         // start update loop
         setInterval(this.updateTime,1000)
-        console.log(`here2`)
     },
 }
 </script>

@@ -52,7 +52,7 @@ export default {
                 days: [ "Monday", "Wednesday", ],
             },
             {
-                description: "Geo",
+                description: "Geo Lab",
                 start: "5:45pm",
                 days: [ "Monday" ],
             },
@@ -62,7 +62,7 @@ export default {
                 days: [ "Tuesday", "Thursday" ],
             },
             {
-                description: "Chem",
+                description: "Chem Lab",
                 start: "6:30pm",
                 days: [ "Tuesday",],
             },
@@ -146,12 +146,21 @@ export default {
             }
             todos = todos.sort((a,b)=>a.dateTime.getTime() - b.dateTime.getTime())
             return todos
+        },
+        
+        generateOrderedTasks() {
+            let unsortedTasks = this.parseUpcomingTodos(this.text).concat(this.generateReocurringTasks())
+            let now = new Date().getTime()
+            let byTime = (a,b)=>a.dateTime.getTime()-b.dateTime.getTime()
+            let isInTheFuture = each=>(each.dateTime.getTime()-now)>0
+            let sortedTasks = ([...unsortedTasks]).filter(isInTheFuture).sort(byTime)
+            return this.tasks = sortedTasks
         }
     },
     watch: {
         text() {
-            this.tasks = this.parseUpcomingTodos(this.text).concat(this.generateReocurringTasks())
-            console.log(`this.tasks is:`,this.tasks)
+            window.tasks = this.generateOrderedTasks()
+            console.log(`window.tasks is:`,this.tasks)
             localStorage.setItem('todos',this.text)
         },
         tasks() {

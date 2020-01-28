@@ -1,4 +1,8 @@
 (using_atk_version): 1.1.0
+
+todo:
+    - have the App.vue, tell the ToDo.vue to update once an event has passed
+
 (project):
     name: Your Project Name Here
     description: Describe your project here
