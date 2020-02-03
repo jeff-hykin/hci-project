@@ -46,11 +46,11 @@ export default {
                 start: "9:10am",
                 days: [ "Monday", "Wednesday", "Friday" ],
             },
-            {
-                description: "Capstone",
-                start: "11:15am",
-                days: [ "Monday", "Wednesday", ],
-            },
+            // {
+            //     description: "Capstone",
+            //     start: "11:15am",
+            //     days: [ "Monday", "Wednesday", ],
+            // },
             {
                 description: "Geo Lab",
                 start: "5:45pm",
@@ -68,7 +68,7 @@ export default {
             },
             {
                 description: "Kine",
-                start: "9:30pm",
+                start: "9:30am",
                 days: [ "Thursday",],
             },
         ],
