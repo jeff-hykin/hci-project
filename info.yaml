@@ -9,7 +9,7 @@ todo:
     
     (commands):
         serve: npm run serve
-        (setup): echo 'setup command unset' 
+        (setup): npm install
     
     (paths):
         project_root: ./

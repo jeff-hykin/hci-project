@@ -169,9 +169,9 @@ export default {
     },
     mounted() {
         let todos = localStorage.getItem('todos')
-        if (todos) {
+        if (typeof todos == 'string') {
             this.text = todos
-            this.tasks = this.parseUpcomingTodos(this.text)
+            this.tasks = this.generateOrderedTasks()
         }
         // force the component to update its size
         setTimeout(this.$refs.textbox.refreshSize, 0)

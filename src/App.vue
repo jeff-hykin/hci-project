@@ -37,13 +37,14 @@
                 </button>
             </column> -->
             <row height=2rem />
-            <to-do @taskChange='updateCalendarEvents' />
+            <ToDo @taskChange='updateCalendarEvents' />
         </column>
     </row>
 </template>
 
 <script>
 import ToDo from './components/ToDo'
+import DatePicker from 'vue-md-date-picker'
 
 let currentUnixTime = ()=>new Date().getTime()/1000
 let padZero = (amount)=> {
@@ -57,6 +58,7 @@ export default {
     name: 'Main',
     components: {
         ToDo,
+        DatePicker,
     },
     data: ()=> ({
         timeUntil: null,
@@ -67,6 +69,7 @@ export default {
             date: null,
             title: null,
         },
+        randomDate: null,
         calendarEvents: [
         ],
     }),
@@ -100,7 +103,7 @@ export default {
     watch: {
         timeUntil() {
             document.title = this.countdown
-        }
+        },
     },
     methods: {
         timeUntilNextCaledarEvent() {
