@@ -12,7 +12,7 @@
                 class="todo-textbox"
                 :autosize="true"
             />
-        <column v-for="each in reocurringTasks" v-bind:key='each&&Math.random()' class=card align-h=left padding=1.2rem margin-top=1rem  width=-webkit-fill-available>
+        <column v-for="each in reocurringTasksToDisplay" v-bind:key='each&&Math.random()' class=card align-h=left padding=1.2rem margin-top=1rem  width=-webkit-fill-available>
             <row >
                 <b>{{each.start}}</b> <div style="width: 0.8rem" ></div> {{each.description}}
             </row >
@@ -42,33 +42,92 @@ export default {
         tasks: [],
         reocurringTasks: [
             {
+                description: "Leave for Chem",
+                hide: true,
+                start: "8:50am",
+                days: [ "Monday", "Wednesday", "Friday" ],
+            },
+            {
                 description: "Chem",
                 start: "9:10am",
                 days: [ "Monday", "Wednesday", "Friday" ],
             },
-            // {
-            //     description: "Capstone",
-            //     start: "11:15am",
-            //     days: [ "Monday", "Wednesday", ],
-            // },
+            
+            
+            {
+                description: "Leave for Capstone",
+                hide: true,
+                start: "12:10pm",
+                days: [ "Monday", ],
+            },
+            {
+                description: "Capstone",
+                start: "12:30pm",
+                days: [ "Monday", ],
+            },
+            
+            
+            {
+                description: "Leave for Geo Lab",
+                hide: true,
+                start: "5:25pm",
+                days: [ "Monday" ],
+            },
             {
                 description: "Geo Lab",
                 start: "5:45pm",
                 days: [ "Monday" ],
+            },
+            
+            
+            {
+                description: "leave for Geo",
+                hide: true,
+                start: "2:00pm",
+                days: [ "Tuesday", "Thursday" ],
             },
             {
                 description: "Geo",
                 start: "2:20pm",
                 days: [ "Tuesday", "Thursday" ],
             },
+            
+            
+            {
+                description: "Leave for Chem Lab",
+                hide: true,
+                start: "6:10pm",
+                days: [ "Tuesday",],
+            },
             {
                 description: "Chem Lab",
                 start: "6:30pm",
                 days: [ "Tuesday",],
             },
+            
+            
+            {
+                description: "Leave for Kine",
+                hide: true,
+                start: "9:10am",
+                days: [ "Thursday",],
+            },
             {
                 description: "Kine",
                 start: "9:30am",
+                days: [ "Thursday",],
+            },
+            
+            
+            {
+                description: "Leave for robotics",
+                hide: true,
+                start: "6:50pm",
+                days: [ "Thursday", ],
+            },
+            {
+                description: "Robotics",
+                start: "7:00pm",
                 days: [ "Thursday",],
             },
         ],
@@ -157,6 +216,11 @@ export default {
             return this.tasks = sortedTasks
         }
     },
+    computed: {
+        reocurringTasksToDisplay() {
+            return this.reocurringTasks.filter(each=>each.hide !== true)
+        }
+    },
     watch: {
         text() {
             window.tasks = this.generateOrderedTasks()
@@ -165,7 +229,7 @@ export default {
         },
         tasks() {
             this.$emit('taskChange', this.tasks)
-        }
+        },
     },
     mounted() {
         let todos = localStorage.getItem('todos')
