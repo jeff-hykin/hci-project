@@ -57,7 +57,6 @@ export default {
     name: 'Main',
     components: {
         ToDo,
-        DatePicker,
     },
     data: ()=> ({
         timeUntil: null,
