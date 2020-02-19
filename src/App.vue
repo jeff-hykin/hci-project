@@ -44,7 +44,6 @@
 
 <script>
 import ToDo from './components/ToDo'
-import DatePicker from 'vue-md-date-picker'
 
 let currentUnixTime = ()=>new Date().getTime()/1000
 let padZero = (amount)=> {
