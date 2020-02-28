@@ -130,6 +130,18 @@ export default {
                 start: "7:00pm",
                 days: [ "Thursday",],
             },
+            
+            {
+                description: "Leave for robotics",
+                hide: true,
+                start: "5:50pm",
+                days: [ "Friday", ],
+            },
+            {
+                description: "Robotics",
+                start: "6:00pm",
+                days: [ "Friday",],
+            },
         ],
     }),
     methods: {
