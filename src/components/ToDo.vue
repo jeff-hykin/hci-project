@@ -41,107 +41,107 @@ export default {
         text: "",
         tasks: [],
         reocurringTasks: [
-            {
-                description: "Leave for Chem",
-                hide: true,
-                start: "8:50am",
-                days: [ "Monday", "Wednesday", "Friday" ],
-            },
-            {
-                description: "Chem",
-                start: "9:10am",
-                days: [ "Monday", "Wednesday", "Friday" ],
-            },
+            // {
+            //     description: "Leave for Chem",
+            //     hide: true,
+            //     start: "8:50am",
+            //     days: [ "Monday", "Wednesday", "Friday" ],
+            // },
+            // {
+            //     description: "Chem",
+            //     start: "9:10am",
+            //     days: [ "Monday", "Wednesday", "Friday" ],
+            // },
             
             
-            {
-                description: "Leave for Capstone",
-                hide: true,
-                start: "12:10pm",
-                days: [ "Monday", ],
-            },
-            {
-                description: "Capstone",
-                start: "12:30pm",
-                days: [ "Monday", ],
-            },
+            // {
+            //     description: "Leave for Capstone",
+            //     hide: true,
+            //     start: "12:10pm",
+            //     days: [ "Monday", ],
+            // },
+            // {
+            //     description: "Capstone",
+            //     start: "12:30pm",
+            //     days: [ "Monday", ],
+            // },
             
             
-            {
-                description: "Leave for Geo Lab",
-                hide: true,
-                start: "5:25pm",
-                days: [ "Monday" ],
-            },
-            {
-                description: "Geo Lab",
-                start: "5:45pm",
-                days: [ "Monday" ],
-            },
+            // {
+            //     description: "Leave for Geo Lab",
+            //     hide: true,
+            //     start: "5:25pm",
+            //     days: [ "Monday" ],
+            // },
+            // {
+            //     description: "Geo Lab",
+            //     start: "5:45pm",
+            //     days: [ "Monday" ],
+            // },
             
             
-            {
-                description: "leave for Geo",
-                hide: true,
-                start: "2:00pm",
-                days: [ "Tuesday", "Thursday" ],
-            },
-            {
-                description: "Geo",
-                start: "2:20pm",
-                days: [ "Tuesday", "Thursday" ],
-            },
+            // {
+            //     description: "leave for Geo",
+            //     hide: true,
+            //     start: "2:00pm",
+            //     days: [ "Tuesday", "Thursday" ],
+            // },
+            // {
+            //     description: "Geo",
+            //     start: "2:20pm",
+            //     days: [ "Tuesday", "Thursday" ],
+            // },
             
             
-            {
-                description: "Leave for Chem Lab",
-                hide: true,
-                start: "6:10pm",
-                days: [ "Tuesday",],
-            },
-            {
-                description: "Chem Lab",
-                start: "6:30pm",
-                days: [ "Tuesday",],
-            },
+            // {
+            //     description: "Leave for Chem Lab",
+            //     hide: true,
+            //     start: "6:10pm",
+            //     days: [ "Tuesday",],
+            // },s
+            // {
+            //     description: "Chem Lab",
+            //     start: "6:30pm",
+            //     days: [ "Tuesday",],
+            // },
             
             
-            {
-                description: "Leave for Kine",
-                hide: true,
-                start: "9:10am",
-                days: [ "Thursday",],
-            },
-            {
-                description: "Kine",
-                start: "9:30am",
-                days: [ "Thursday",],
-            },
+            // {
+            //     description: "Leave for Kine",
+            //     hide: true,
+            //     start: "9:10am",
+            //     days: [ "Thursday",],
+            // },
+            // {
+            //     description: "Kine",
+            //     start: "9:30am",
+            //     days: [ "Thursday",],
+            // },
             
             
-            {
-                description: "Leave for robotics",
-                hide: true,
-                start: "6:50pm",
-                days: [ "Thursday", ],
-            },
-            {
-                description: "Robotics",
-                start: "7:00pm",
-                days: [ "Thursday",],
-            },
+            // {
+            //     description: "Leave for robotics",
+            //     hide: true,
+            //     start: "6:50pm",
+            //     days: [ "Thursday", ],
+            // },
+            // {
+            //     description: "Robotics",
+            //     start: "7:00pm",
+            //     days: [ "Thursday",],
+            // },
             
-            {
-                description: "Leave for robotics",
-                hide: true,
-                start: "5:50pm",
-                days: [ "Friday", ],
-            },
-            {
-                description: "Robotics",
-                start: "6:00pm",
-                days: [ "Friday",],
-            },
+            // {
+            //     description: "Leave for robotics",
+            //     hide: true,
+            //     start: "5:50pm",
+            //     days: [ "Friday", ],
+            // },
+            // {
+            //     description: "Robotics",
+            //     start: "6:00pm",
+            //     days: [ "Friday",],
+            // },
         ],
     }),
     methods: {
