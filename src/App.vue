@@ -1,4 +1,5 @@
 <template>
+<column>
     <row align-h=space-between align-v=top :wrap=true>
         <!-- spacing -->
         <!-- <column margin=2rem>
@@ -6,9 +7,9 @@
         
         <!-- timer area -->
         <column margin=2rem>
-            <row class='card no-word-wrap' color=gray>
+            <Card>
                 <h3 style='width: max-content'>{{calendarEventName}}</h3>
-            </row>
+            </Card>
             <row>
                 <h1 v-if="daysUntil">{{daysUntil}}:</h1>
                 <h1 v-if="hoursUntil">{{hoursUntil}}:</h1>
@@ -40,10 +41,15 @@
             <ToDo @taskChange='updateCalendarEvents' />
         </column>
     </row>
+</column>
 </template>
 
 <script>
-import ToDo from './components/ToDo'
+import Card from '@/components/Card'
+import ToDo from '@/components/ToDo'
+
+import allUtils from "./utils/allUtils"
+window.allUtils = allUtils
 
 let currentUnixTime = ()=>new Date().getTime()/1000
 let padZero = (amount)=> {
@@ -57,6 +63,7 @@ export default {
     name: 'Main',
     components: {
         ToDo,
+        Card,
     },
     data: ()=> ({
         timeUntil: null,
@@ -157,14 +164,6 @@ export default {
 }
 </script>
 <style>
-.card {
-    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.3) 0px 2px 4px -1px;
-    padding: 2rem;
-    border-radius: 1rem;
-}
-.card h5 {
-    margin-right: 1rem;
-}
 .row.card-row {
     justify-content: space-between;
     width: 100%;
@@ -175,5 +174,9 @@ export default {
 }
 .no-word-wrap {
     white-space: pre;
+}
+body input {
+    width: 6rem;
+    margin: 0.5rem;
 }
 </style>

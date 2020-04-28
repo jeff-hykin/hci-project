@@ -12,6 +12,7 @@
     "good-date": "^1.3.16",
     "good-vue": "^1.1.2",
     "keen-ui": "^1.2.0",
+    "sass-loader": "^8.0.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
