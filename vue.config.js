@@ -2,6 +2,6 @@ module.exports = {
     configureWebpack: {
         devtool: "source-map",
     },
-    publicPath: "/serve-vue-app",
+    publicPath: "/docs",
     outputDir: "docs"
 }
