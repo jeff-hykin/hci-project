@@ -2,6 +2,6 @@ module.exports = {
     configureWebpack: {
         devtool: "source-map",
     },
-    publicPath: "/docs",
+    publicPath: "",
     outputDir: "docs"
 }
