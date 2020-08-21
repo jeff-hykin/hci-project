@@ -1,14 +1,14 @@
 <template>
-<column>
+<column align-h=left align-v=top>
     <row align-h=space-between align-v=top :wrap=true>
         <!-- spacing -->
         <!-- <column margin=2rem>
         </column> -->
         
         <!-- timer area -->
-        <column margin=2rem>
-            <Card>
-                <h3 style='width: max-content'>{{calendarEventName}}</h3>
+        <column margin=2rem max-with=100vw flex-grow=1 max-width=40rem>
+            <Card style="max-width: 100%;">
+                <h3 style='width: 100%; max-width: 100%'>{{calendarEventName}}</h3>
             </Card>
             <row>
                 <h1 v-if="daysUntil">{{daysUntil}}:</h1>
