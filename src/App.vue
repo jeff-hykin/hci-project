@@ -1,6 +1,6 @@
 <template>
 <column align-h=left align-v=top>
-    <row align-h=space-between align-v=top :wrap=true>
+    <row align-v=top :wrap=true width=100%>
         <!-- spacing -->
         <!-- <column margin=2rem>
         </column> -->
