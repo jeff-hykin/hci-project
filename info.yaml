@@ -9,6 +9,7 @@ todo:
     
     (commands):
         serve: npm run serve
+        build: npm run build
         (setup): npm install
     
     (paths):
