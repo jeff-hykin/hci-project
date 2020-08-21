@@ -35,114 +35,25 @@ const convertTime12to24 = (hours, minutes, pmOrAm) => {
 }
 import DateTime from 'good-date'
 
-
+let extractFirst = ({ pattern, from }) => {
+    let match = from.match(pattern)
+    if (match) {
+        return {
+            remaining: from.slice(0, match.index)+ from.slice(match.index + match[0].length, from.length),
+            extraction: match[0]
+        }
+    } else {
+        return {
+            remaining: from,
+            extraction: null
+        }
+    }
+}
 export default {
     data: ()=>({
         text: "",
         tasks: [],
-        reocurringTasks: [
-            // {
-            //     description: "Leave for Chem",
-            //     hide: true,
-            //     start: "8:50am",
-            //     days: [ "Monday", "Wednesday", "Friday" ],
-            // },
-            // {
-            //     description: "Chem",
-            //     start: "9:10am",
-            //     days: [ "Monday", "Wednesday", "Friday" ],
-            // },
-            
-            
-            // {
-            //     description: "Leave for Capstone",
-            //     hide: true,
-            //     start: "12:10pm",
-            //     days: [ "Monday", ],
-            // },
-            // {
-            //     description: "Capstone",
-            //     start: "12:30pm",
-            //     days: [ "Monday", ],
-            // },
-            
-            
-            // {
-            //     description: "Leave for Geo Lab",
-            //     hide: true,
-            //     start: "5:25pm",
-            //     days: [ "Monday" ],
-            // },
-            // {
-            //     description: "Geo Lab",
-            //     start: "5:45pm",
-            //     days: [ "Monday" ],
-            // },
-            
-            
-            // {
-            //     description: "leave for Geo",
-            //     hide: true,
-            //     start: "2:00pm",
-            //     days: [ "Tuesday", "Thursday" ],
-            // },
-            // {
-            //     description: "Geo",
-            //     start: "2:20pm",
-            //     days: [ "Tuesday", "Thursday" ],
-            // },
-            
-            
-            // {
-            //     description: "Leave for Chem Lab",
-            //     hide: true,
-            //     start: "6:10pm",
-            //     days: [ "Tuesday",],
-            // },s
-            // {
-            //     description: "Chem Lab",
-            //     start: "6:30pm",
-            //     days: [ "Tuesday",],
-            // },
-            
-            
-            // {
-            //     description: "Leave for Kine",
-            //     hide: true,
-            //     start: "9:10am",
-            //     days: [ "Thursday",],
-            // },
-            // {
-            //     description: "Kine",
-            //     start: "9:30am",
-            //     days: [ "Thursday",],
-            // },
-            
-            
-            // {
-            //     description: "Leave for robotics",
-            //     hide: true,
-            //     start: "6:50pm",
-            //     days: [ "Thursday", ],
-            // },
-            // {
-            //     description: "Robotics",
-            //     start: "7:00pm",
-            //     days: [ "Thursday",],
-            // },
-            
-            // {
-            //     description: "Leave for robotics",
-            //     hide: true,
-            //     start: "5:50pm",
-            //     days: [ "Friday", ],
-            // },
-            // {
-            //     description: "Robotics",
-            //     start: "6:00pm",
-            //     days: [ "Friday",],
-            // },
-        ],
+        reocurringTasks: [],
     }),
     methods: {
         generateReocurringTasks() {
@@ -182,10 +93,41 @@ export default {
         
         parseUpcomingTodos(text, timezoneReference=(new Date())) {
             let todos = []
+            let reocurringTasks = []
             if (text) {
                 let lines = text.split(/\n(?=\S)/)
                 for (let each of lines) {
-                    let match = each.match(/(?:(\d+\/\d+\/\d+) )?(\d{1,2}):(\d{1,2})([aA][mM]|[pP][mM]) ([\s\S]*)/)
+                    // 
+                    // check for reocurring
+                    // 
+                    let reocurringMatch = each.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)/i)
+                    if (reocurringMatch) {
+                        try {
+                            var { remaining: lineWithoutDays,  extraction: days} = extractFirst({ pattern: /^(\w+( *, *)?)+/,  from: each, })
+                            days = days.split(",").map(each=>each.trim())
+                            days = days.map(each=>{
+                                if      (each.match(/^Sun/i)) { return "Sunday"    }
+                                else if (each.match(/^Mon/i)) { return "Monday"    }
+                                else if (each.match(/^Tue/i)) { return "Tuesday"   }
+                                else if (each.match(/^Wed/i)) { return "Wednesday" }
+                                else if (each.match(/^Thu/i)) { return "Thursday"  }
+                                else if (each.match(/^Fri/i)) { return "Friday"    }
+                                else if (each.match(/^Sat/i)) { return "Saturday"  }
+                            })
+                            
+                            var { remaining: description ,  extraction: start} = extractFirst({ pattern: /\s*[^\s]+/,  from: lineWithoutDays, })
+                            start = start.trim()
+                            
+                            reocurringTasks.push({ description, start, days })
+                        } catch (error) {
+                            console.error("Error trying to parse weekly reocurring event")
+                            console.debug(`error is:`,error)
+                        }
+                        continue
+                    }
+                    
+                    
+                    let match = each.match(/^(?:(\d+\/\d+\/\d+) )?(\d{1,2}):(\d{1,2})([aA][mM]|[pP][mM]) ([\s\S]*)/)
                     if (match) {
                         let hour = match[2]-0
                         let minute = match[3]-0
@@ -216,6 +158,7 @@ export default {
                 }
             }
             todos = todos.sort((a,b)=>a.dateTime.getTime() - b.dateTime.getTime())
+            this.reocurringTasks = reocurringTasks
             return todos
         },
         
