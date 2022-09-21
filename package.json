@@ -16,7 +16,7 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
-    "vuetify": "^2.1.11"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
