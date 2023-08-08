@@ -154,7 +154,7 @@ $large-screen: 80rem;
         padding-bottom: 0;
         
         @media not screen and (max-width: $large-screen) {
-            --large-padding: calc(3rem + 10vw);
+            --large-padding: calc(3rem + 5vw);
             padding-left: var(--large-padding);
             padding-right: var(--large-padding);
         }
